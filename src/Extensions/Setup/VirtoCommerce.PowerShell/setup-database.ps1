@@ -1,9 +1,9 @@
 # variables
 Param( 
-	$dbconnection = "Server=(local);Database=VirtoCommerce;Integrated Security=True;",
+	$dbconnection = "Server=tcp:kiy0km2fxn.database.windows.net,1433;Database=VirtoMarketPlace;User ID=Virto@kiy0km2fxn;Password=Med1achase;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;",
     $datafolder,
     $moduleFile,
-    $useSample = $true,
+    $useSample = $false,
 	$reducedSample = $false
 )
 
