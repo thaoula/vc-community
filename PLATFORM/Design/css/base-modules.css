@@ -3169,7 +3169,7 @@ fieldset + fieldset
     margin: 0 -10px 0 0;
 	min-width: 130px;
     overflow: hidden;
-    padding: 0 0 10px 10px;
+    padding: 10px;
 	position: relative;
 	width: auto;
 }
@@ -6206,3 +6206,107 @@ input.ui-grid-filter-input[type="text"]
                         max-width: 100%;
                         vertical-align: middle;
                     }
+
+
+/* Gridster */
+.gridster
+{
+    list-style: none;
+    margin: 15px 0;
+}
+
+    .gridster gridster-item,
+    .gridster .list-item
+    {
+        background: #fff;
+        cursor: move;
+        padding: 2px;
+        position: absolute;
+        text-align: center;
+
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+
+        -webkit-box-shadow: 0 0 0 2px #dee9f0 inset;
+                box-shadow: 0 0 0 2px #dee9f0 inset;
+    }
+
+    .gridster gridster-item:hover,
+    .gridster .list-item:hover
+    {
+        -webkit-box-shadow: 0 0 0 2px #a1c0d4 inset;
+                box-shadow: 0 0 0 2px #a1c0d4 inset;
+    }
+
+    .gridster .preview-holder
+    {
+        background: #dee9f0;
+        border-color: #a1c0d4;
+        border-style: dashed;
+        border-width: 1px;
+    }
+
+    .gridster .gridster-cnt
+    {
+        height: 100%;
+        position: relative;
+        text-align: center;
+        width: 100%;
+    }
+
+    .gridster .gridster-cnt::after
+    {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+        .gridster-cnt .cnt-inner
+        {
+            height: auto;
+            padding: 0;
+            vertical-align: middle;
+        }
+
+        .gridster .image
+        {
+            border: 1px solid #dee9f0;
+            height: 50px;
+            left: 69px;
+            position: absolute;
+            top: 69px;
+            width: 50px;
+
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+
+        }
+
+        .gridster .image::after
+        {
+            content: '';
+            display: inline-block;
+            height: 100%; 
+            vertical-align: middle;
+        }
+
+            .gridster .image img
+            {
+                display: block;
+                max-height: 100%;
+                max-width: 100%;
+            }
+
+        .gridster .list-t
+        {
+            color: #4c4c4c;
+            font-size: 14px;
+            margin: 0 0 5px;
+        }
+
+        .gridster .list-count
+        {
+            color: #43b0e6;
+            font-size: 30px;
+        }
