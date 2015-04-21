@@ -2394,7 +2394,7 @@ h3
 
 	.table .table-col
 	{
-        border-top: 1px solid #dee9f0;
+        border-bottom: 1px solid #dee9f0;
 		font-size: 14px;
 		padding: 10px;
 		text-align: left;
@@ -2742,7 +2742,8 @@ fieldset + fieldset
             padding-right: 20px;
         }
 
-        .form-input.__calendar input
+        .form-input.__calendar input,
+        .form-input.__info input
         {
             padding-right: 45px;
         }
@@ -3176,7 +3177,6 @@ fieldset + fieldset
 
 .dashboard .tile-group
 {
-    background: rgba(0,0,0,.035);
     overflow: visible;
 }
 
@@ -4137,7 +4137,7 @@ fieldset + fieldset
 /* Breadcrumbs */
 .breadcrumbs
 {
-	margin: 0 20px;
+	padding: 15px 0;
 }
 
 	.breadcrumbs .menu-item.__divider
@@ -4580,7 +4580,7 @@ fieldset + fieldset
     margin: -1px 0 0;
     position: absolute;
     right: 0;
-    z-index: 50;
+    z-index: 100;
 }
 
     .form-input.__calendar .dropdown-menu .btn
@@ -5323,6 +5323,12 @@ tags-input .tags .tag-item .remove-button
     min-width: 444px;
 }
 
+.blade.__animate
+{
+    position: relative;
+    z-index: -1;
+}
+
 	.blade .blade-head,
 	.blade .blade-container
 	{
@@ -5690,9 +5696,14 @@ tags-input .tags .tag-item .remove-button
 					box-sizing: border-box;
 		}
 
+            .blade-static.__colapsed .breadcrumbs
+            {
+                padding: 10px 20px;
+            }
+
 			.blade-static.__expanded .breadcrumbs
 			{
-				padding: 12px 0;
+				padding: 12px 20px;
 			}
 
 			.blade-static .form-group
@@ -5742,6 +5753,11 @@ tags-input .tags .tag-item .remove-button
 			height: 100px;
 		}
 
+        .blade-static.__colapsed
+        {
+            height: 50px;
+        }
+
 		.blade-static.__bottom
 		{
 			border-width: 2px 0 0;
@@ -5750,6 +5766,7 @@ tags-input .tags .tag-item .remove-button
 			padding: 18px 20px;
 			position: absolute;
 			right: 8px;
+            z-index: 100;
 		}
 
             .blade-static.__bottom .form-label
@@ -5767,6 +5784,11 @@ tags-input .tags .tag-item .remove-button
 			height: calc(100% - 100px);
 		}
 
+        .blade-static.__colapsed + .blade-content
+        {
+            height: calc(100% - 50px);
+        }
+
 		.blade-static + .blade-static.__bottom + .blade-content
 		{
 			height: calc(100% - 139px);
@@ -5778,10 +5800,21 @@ tags-input .tags .tag-item .remove-button
 			height: calc(100% - 169px);
 		}
 
+        .blade-static.__colapsed + .blade-static.__bottom + .blade-content,
+        .blade-static + .blade-static.__bottom.__expanded + .blade-content
+        {
+            height: calc(100% - 119px);
+        }
+
 		.blade-static.__expanded + .blade-static.__bottom.__expanded + .blade-content
 		{
 			height: calc(100% - 199px);
 		}
+
+        .blade-static.__colapsed + .blade-static.__bottom.__expanded + .blade-content
+        {
+            height: calc(100% - 149px);
+        }
 
         .blade-container .canceled + .blade-content
         {
@@ -6310,3 +6343,32 @@ input.ui-grid-filter-input[type="text"]
             color: #43b0e6;
             font-size: 30px;
         }
+
+
+/* Tooltip */
+.tooltip
+{
+    background: #43b0e6;
+    color: #fff;
+    font-family: 'Exo 2';
+    font-size: 12px;
+    max-width: 600px;
+    position: absolute;
+    z-index: 100;
+}
+
+.tooltip::after
+{
+    border-color: transparent #43b0e6 transparent transparent;
+    border-style: solid;
+    border-width: 8px;
+    content: '';
+    left: -15px;
+    position: absolute;
+    top: 10px;
+}
+
+    .tooltip .tooltip-cnt
+    {
+        padding: 10px;
+    }
