@@ -3666,15 +3666,9 @@
                             <div class="blade-toolbar">
                                 <ul class="menu __inline">
                                     <li class="menu-item ng-scope">
-                                        <button class="menu-btn">
+                                        <button class="menu-btn __new-blade">
                                             <i class="menu-ico fa fa-plus"></i>
-                                            Add item
-                                        </button>
-                                    </li>
-                                    <li class="menu-item __disabled">
-                                        <button class="menu-btn">
-                                            <i class="menu-ico fa fa-trash-o"></i>
-                                            Remove
+                                            New blade
                                         </button>
                                     </li>
                                 </ul>
@@ -3787,34 +3781,93 @@
                             <div class="blade-toolbar">
                                 <ul class="menu __inline">
                                     <li class="menu-item ng-scope">
-                                        <button class="menu-btn">
+                                        <button class="menu-btn __new-blade">
                                             <i class="menu-ico fa fa-plus"></i>
-                                            Add item
-                                        </button>
-                                    </li>
-                                    <li class="menu-item __disabled">
-                                        <button class="menu-btn">
-                                            <i class="menu-ico fa fa-trash-o"></i>
-                                            Remove
+                                            New blade
                                         </button>
                                     </li>
                                 </ul>
                             </div>
                         </header>
                         <div class="blade-container">
-                            <div class="blade-content __medium-wide __gray">
+                            <div class="blade-content __medium-wide">
                                 <div class="blade-inner">
                                     <div class="inner-block">
-                                        <div ng-controller="GridController">
-                                            <!-- <gridster options="options">
-                                                <gridster-item ng-repeat="item in items track by $index" data-wide="{{ item.wide }}" data-tall="{{ item.tall }}">
-                                                    <div class="gridster-cnt">
-                                                        <div class="cnt-inner">
-                                                            {{ item.template }}
+                                        <div class="form clearfix">
+                                            <div class="columns">
+                                                <div class="column">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Phone</label>
+                                                        <div class="form-input __info">
+                                                            <input type="text">
+                                                            <button class="btn" type="button">
+                                                                <i class="btn-ico fa fa-info" data-text="Please enter phone number format: x-xxx-xxx-xx-xx"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                </gridster-item>
-                                            </gridster> -->
+                                                </div>
+                                                <div class="column">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Phone</label>
+                                                        <div class="form-input __info">
+                                                            <input type="text">
+                                                            <button class="btn" type="button">
+                                                                <i class="btn-ico fa fa-info" data-text="Please enter phone number <br>format: x-xxx-xxx-xx-xx"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-wrapper">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="table-col">
+                                                            <label class="form-control __checkbox">
+                                                                <input type="checkbox">
+                                                                <span class="check"></span>
+                                                            </label>
+                                                        </th>
+                                                        <th class="table-col">Name</th>
+                                                        <th class="table-col">Last modified</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="table-item">
+                                                        <td class="table-col __product-control">
+                                                            <label class="form-control __checkbox">
+                                                                <input type="checkbox">
+                                                                <span class="check"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="table-col">
+                                                            <i class="table-ico fa fa-asterisk"></i>
+                                                            <span class="table-t">Coupon discount test</span>
+                                                            <span class="table-status">Not active</span>
+                                                        </td>
+                                                        <td class="table-col __date">
+                                                            <span class="table-date">12 days ago</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="table-item">
+                                                        <td class="table-col __product-control">
+                                                            <label class="form-control __checkbox">
+                                                                <input type="checkbox">
+                                                                <span class="check"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="table-col">
+                                                            <i class="table-ico fa fa-asterisk"></i>
+                                                            <span class="table-t">Coupon discount test</span>
+                                                            <span class="table-status __active">Active</span>
+                                                        </td>
+                                                        <td class="table-col __date">
+                                                            <span class="table-date">12 days ago</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -3838,6 +3891,31 @@
         <script>
             $(function () {
                 $('select').chosen();
+
+                $('.__new-blade').on('click', function () {
+                    var blade = $(this).parents('.blade'),
+                        newBlade = $('<div class="blade __animate"><header class="blade-head"><div class="blade-status"></div><div class="blade-nav"><ul class="menu __inline"><li class="menu-item __close"><button>Close</button></li></ul></div></header><div class="blade-container"></div></div>'),
+                        bladeW;
+
+                    blade.after(newBlade);
+                    bladeW = newBlade.width();
+                    $('.blade.__animate').css('margin-left', '-' + bladeW + 'px');
+
+                    setTimeout(function () {
+                        $('.blade.__animate').animate({'margin-left': 0}, 250, function () {
+                            $(this).removeAttr('style').removeClass('__animate');
+                        });
+                    }, 100);
+                });
+
+                $('body').delegate('.blade-nav .menu-item.__close', 'click', function () {
+                    var blade = $(this).parents('.blade'),
+                        bladeW = blade.width();
+
+                    blade.addClass('__animate').animate({'margin-left': '-' + bladeW + 'px'}, 250, function () {
+                        $(this).remove();
+                    });
+                });
             });
 
             $(window).ready(function () {
