@@ -2422,10 +2422,32 @@ h3
 
 		.table-col .table-t
 		{
+            display: inline-block;
             font-size: 14px;
 			font-weight: 500;
 			margin: 0 0 5px;
+            vertical-align: middle;
 		}
+
+        .table-col .table-status
+        {
+            background: #a6a6a6;
+            color: #fff;
+            display: block;
+            font-size: 12px;
+            height: 20px;
+            line-height: 18px;
+            max-width: 56px;
+            margin: 5px 0 0;
+            padding: 0 5px;
+            text-align: center;
+            text-shadow: none;
+        }
+
+        .table-col .table-status.__active
+        {
+            background: #43b0e6;
+        }
 
 		.table-col .table-date
 		{
@@ -2498,7 +2520,7 @@ h3
 	{
 		color: #a6a6a6;
 		font-size: 28px;
-        margin: -4px 0 0;
+        margin: -4px 10px 0 0;
 		text-shadow: 1px 1px #fff;
 		vertical-align: middle;
 	}
@@ -3666,6 +3688,11 @@ fieldset + fieldset
 	margin: 0 -20px 15px;
 }
 
+.list.__files
+{
+    margin: 15px -20px;
+}
+
     .__items .list-item
 	{
         background: #fff;
@@ -3728,6 +3755,7 @@ fieldset + fieldset
 
         .__files .list-ico
         {
+            font-size: 24px;
             width: 30px;
         }
 
@@ -3923,7 +3951,7 @@ fieldset + fieldset
 {
     cursor: pointer;
     display: block;
-    padding: 10px 20px;
+    padding: 2px 20px;
 }
 
     .__files .list-img
