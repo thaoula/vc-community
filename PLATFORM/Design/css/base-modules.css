@@ -2934,6 +2934,26 @@ fieldset + fieldset
 				padding: 0 10px;
 			}
 
+            .form-input.__info .btn-ico
+            {
+                color: #fff;
+                font-size: 16px;
+                height: auto;
+                text-shadow: none;
+                width: 20px;
+            }
+
+            .form-input.__info .btn-ico::before
+            {
+                background: #43b0e6;
+                display: block;
+                height: 20px;
+                line-height: 20px;
+
+                -webkit-border-radius: 50%;
+                        border-radius: 50%;
+            }
+
 	.form-control .form-label
 	{
 		display: inline-block;
