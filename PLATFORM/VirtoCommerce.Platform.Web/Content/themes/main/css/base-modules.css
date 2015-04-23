@@ -5771,6 +5771,7 @@ tags-input .tags .tag-item .remove-button
 
 			.blade-static.__expanded .breadcrumbs
 			{
+                margin: 0 0 -15px;
 				padding: 12px 20px;
 			}
 
@@ -5780,6 +5781,13 @@ tags-input .tags .tag-item .remove-button
 				padding: 17px 0;
 				position: relative;
 			}
+
+                .blade-static .form-group .link
+                {
+                    display: inline-block;
+                    font-size: 14px;
+                    margin: 12px 10px 0 0;
+                }
 
 				.blade-static .form-input.__search
 				{
@@ -5792,16 +5800,6 @@ tags-input .tags .tag-item .remove-button
 					right: 0;
 					top: 15px;
 				}
-
-			.blade-static.__expanded .form-group
-			{
-				padding: 0;
-			}
-
-			.blade-static.__expanded .form-count
-			{
-				top: 0;
-			}
 
 			.blade-static .pagination
 			{
