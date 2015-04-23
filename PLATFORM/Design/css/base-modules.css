@@ -2394,8 +2394,10 @@ h3
 
 	.table .table-col
 	{
-        border-bottom: 1px solid #dee9f0;
-		font-size: 14px;
+        border-color: #dee9f0;
+        border-style: solid;
+        border-width: 1px 0;
+        font-size: 14px;
 		padding: 10px;
 		text-align: left;
 		text-shadow: 1px 1px #fff;
@@ -2494,7 +2496,6 @@ h3
 	.table th.table-col
 	{
 		background: rgba(0,0,0,.025);
-		border-color: rgba(0,0,0,.05);
 		font-size: 14px;
 		font-weight: 500;
         line-height: 1.3;
@@ -3779,6 +3780,11 @@ fieldset + fieldset
             width: 30px;
         }
 
+        .__files .list.__sub .list-ico
+        {
+            font-size: 22px;
+        }
+
         .__items .list-ico ~ .list-name,
         .__files .list-ico ~ .list-name
         {
@@ -3971,6 +3977,14 @@ fieldset + fieldset
 {
     cursor: pointer;
     display: block;
+    padding: 2px 20px;
+}
+
+.__files .list-link
+{
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 0 0;
     padding: 2px 20px;
 }
 
@@ -5368,7 +5382,6 @@ tags-input .tags .tag-item .remove-button
 {
 	background: #fff;
 	font-family: serif;
-    min-width: 444px;
 }
 
 .blade.__animate
@@ -5902,6 +5915,11 @@ tags-input .tags .tag-item .remove-button
         width: 696px;
     }
 
+    .blade .blade-content.__tree
+    {
+        width: 356px;
+    }
+
 		.blade-content .form
 		{
 			margin-right: 16px;
@@ -5999,6 +6017,11 @@ tags-input .tags .tag-item .remove-button
         .blade-content.__large-wide .inner-block
         {
             width: 656px;
+        }
+
+        .blade-content.__tree .inner-block
+        {
+            width: 316px;
         }
 
     .blade .blade-loader
