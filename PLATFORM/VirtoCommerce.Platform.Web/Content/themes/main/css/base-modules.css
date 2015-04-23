@@ -5488,6 +5488,13 @@ tags-input .tags .tag-item .remove-button
                     width: 100%;
                 }
 
+                .blade-nav .menu-item .btn-ico
+                {
+                    color: #fff;
+                    font-size: 13px;
+                    line-height: 20px;
+                }
+
 			.blade-nav .menu-item.__minimize:after,
 			.blade-nav .menu-item.__maximize:after
 			{

@@ -8,7 +8,7 @@ using VirtoCommerce.Platform.Core.Packaging;
 using VirtoCommerce.Platform.Data.Packaging;
 using VirtoCommerce.Platform.Data.Packaging.Repositories;
 
-namespace VirtoCommerce.PackagingModule.Tests
+namespace VirtoCommerce.Platform.Tests
 {
     [TestClass]
     public class PackageServiceTests
