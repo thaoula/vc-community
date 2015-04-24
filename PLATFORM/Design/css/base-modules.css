@@ -2394,8 +2394,10 @@ h3
 
 	.table .table-col
 	{
-        border-bottom: 1px solid #dee9f0;
-		font-size: 14px;
+        border-color: #dee9f0;
+        border-style: solid;
+        border-width: 1px 0;
+        font-size: 14px;
 		padding: 10px;
 		text-align: left;
 		text-shadow: 1px 1px #fff;
@@ -2494,7 +2496,6 @@ h3
 	.table th.table-col
 	{
 		background: rgba(0,0,0,.025);
-		border-color: rgba(0,0,0,.05);
 		font-size: 14px;
 		font-weight: 500;
         line-height: 1.3;
@@ -3779,6 +3780,11 @@ fieldset + fieldset
             width: 30px;
         }
 
+        .__files .list.__sub .list-ico
+        {
+            font-size: 22px;
+        }
+
         .__items .list-ico ~ .list-name,
         .__files .list-ico ~ .list-name
         {
@@ -3971,6 +3977,14 @@ fieldset + fieldset
 {
     cursor: pointer;
     display: block;
+    padding: 2px 20px;
+}
+
+.__files .list-link
+{
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 0 0;
     padding: 2px 20px;
 }
 
@@ -5368,7 +5382,6 @@ tags-input .tags .tag-item .remove-button
 {
 	background: #fff;
 	font-family: serif;
-    min-width: 444px;
 }
 
 .blade.__animate
@@ -5751,13 +5764,14 @@ tags-input .tags .tag-item .remove-button
 					box-sizing: border-box;
 		}
 
-            .blade-static.__colapsed .breadcrumbs
+            .blade-static.__collapsed .breadcrumbs
             {
                 padding: 10px 20px;
             }
 
 			.blade-static.__expanded .breadcrumbs
 			{
+                margin: 0 0 -15px;
 				padding: 12px 20px;
 			}
 
@@ -5767,6 +5781,13 @@ tags-input .tags .tag-item .remove-button
 				padding: 17px 0;
 				position: relative;
 			}
+
+                .blade-static .form-group .link
+                {
+                    display: inline-block;
+                    font-size: 14px;
+                    margin: 12px 10px 0 0;
+                }
 
 				.blade-static .form-input.__search
 				{
@@ -5779,16 +5800,6 @@ tags-input .tags .tag-item .remove-button
 					right: 0;
 					top: 15px;
 				}
-
-			.blade-static.__expanded .form-group
-			{
-				padding: 0;
-			}
-
-			.blade-static.__expanded .form-count
-			{
-				top: 0;
-			}
 
 			.blade-static .pagination
 			{
@@ -5808,7 +5819,7 @@ tags-input .tags .tag-item .remove-button
 			height: 100px;
 		}
 
-        .blade-static.__colapsed
+        .blade-static.__collapsed
         {
             height: 50px;
         }
@@ -5839,7 +5850,7 @@ tags-input .tags .tag-item .remove-button
 			height: calc(100% - 100px);
 		}
 
-        .blade-static.__colapsed + .blade-content
+        .blade-static.__collapsed + .blade-content
         {
             height: calc(100% - 50px);
         }
@@ -5855,7 +5866,7 @@ tags-input .tags .tag-item .remove-button
 			height: calc(100% - 169px);
 		}
 
-        .blade-static.__colapsed + .blade-static.__bottom + .blade-content,
+        .blade-static.__collapsed + .blade-static.__bottom + .blade-content,
         .blade-static + .blade-static.__bottom.__expanded + .blade-content
         {
             height: calc(100% - 119px);
@@ -5866,7 +5877,7 @@ tags-input .tags .tag-item .remove-button
 			height: calc(100% - 199px);
 		}
 
-        .blade-static.__colapsed + .blade-static.__bottom.__expanded + .blade-content
+        .blade-static.__collapsed + .blade-static.__bottom.__expanded + .blade-content
         {
             height: calc(100% - 149px);
         }
@@ -5900,6 +5911,11 @@ tags-input .tags .tag-item .remove-button
     .blade .blade-content.__large-wide
     {
         width: 696px;
+    }
+
+    .blade .blade-content.__tree
+    {
+        width: 356px;
     }
 
 		.blade-content .form
@@ -5999,6 +6015,11 @@ tags-input .tags .tag-item .remove-button
         .blade-content.__large-wide .inner-block
         {
             width: 656px;
+        }
+
+        .blade-content.__tree .inner-block
+        {
+            width: 316px;
         }
 
     .blade .blade-loader
