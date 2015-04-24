@@ -5382,11 +5382,11 @@ tags-input .tags .tag-item .remove-button
 {
 	background: #fff;
 	font-family: serif;
+    position: relative;
 }
 
 .blade.__animate
 {
-    position: relative;
     z-index: -1;
 }
 
@@ -5410,6 +5410,11 @@ tags-input .tags .tag-item .remove-button
 		-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 	}
+
+    .blade.__active .blade-head
+    {
+        background: #34454c;
+    }
 
 		.blade-head .blade-status
 		{
@@ -5893,6 +5898,11 @@ tags-input .tags .tag-item .remove-button
 		white-space: normal;
 	}
 
+    .blade.__active .blade-content
+    {
+        background: #f1fbfe;
+    }
+
 	.blade .blade-content.__gray
 	{
 		background-color: #f3f3f3;
@@ -5900,7 +5910,7 @@ tags-input .tags .tag-item .remove-button
 
     .__canceled
     {
-        background-color: #faf1f1;
+        background-color: #eff7fc;
     }
 
 	.blade .blade-content.__medium-wide
