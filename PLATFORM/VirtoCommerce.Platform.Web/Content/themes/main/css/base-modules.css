@@ -5437,6 +5437,9 @@ tags-input .tags .tag-item .remove-button
 	background: #fff;
 	font-family: serif;
     position: relative;
+
+    -webkit-box-shadow: -5px 0 5px -6px rgba(0, 0, 0, .1);
+            box-shadow: -5px 0 5px -6px rgba(0, 0, 0, .1);
 }
 
 .blade.__animate
