@@ -5,6 +5,11 @@
     display: none;
 }
 
+.no-data 
+{
+    color: #999;
+}
+
 /* Scroll bar */
 *::-webkit-scrollbar
 {
@@ -2431,6 +2436,11 @@ h3
             vertical-align: middle;
 		}
 
+        .table-col .table-descr
+        {
+            color: #999;
+        }
+
         .table-col .table-status
         {
             background: #a6a6a6;
@@ -3873,6 +3883,7 @@ fieldset + fieldset
 
 		.__items .list-descr
 		{
+		    color: #999;
 			display: block;
 			font-size: 12px;
 		}
