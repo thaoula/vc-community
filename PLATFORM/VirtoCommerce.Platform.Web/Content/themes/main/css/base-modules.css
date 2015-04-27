@@ -6089,6 +6089,11 @@ tags-input .tags .tag-item .remove-button
             width: 316px;
         }
 
+        .blade-content.__code-editor .inner-block
+        {
+            width: auto;
+        }
+
     .blade .blade-loader
     {
         padding: 20px;
