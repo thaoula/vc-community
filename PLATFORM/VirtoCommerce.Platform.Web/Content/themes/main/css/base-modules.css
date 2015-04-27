@@ -5,6 +5,11 @@
     display: none;
 }
 
+.no-data 
+{
+    color: #999;
+}
+
 /* Scroll bar */
 *::-webkit-scrollbar
 {
@@ -2431,6 +2436,11 @@ h3
             vertical-align: middle;
 		}
 
+        .table-col .table-descr
+        {
+            color: #999;
+        }
+
         .table-col .table-status
         {
             background: #a6a6a6;
@@ -3873,6 +3883,7 @@ fieldset + fieldset
 
 		.__items .list-descr
 		{
+		    color: #999;
 			display: block;
 			font-size: 12px;
 		}
@@ -5426,6 +5437,9 @@ tags-input .tags .tag-item .remove-button
 	background: #fff;
 	font-family: serif;
     position: relative;
+
+    -webkit-box-shadow: -5px 0 5px -6px rgba(0, 0, 0, .1);
+            box-shadow: -5px 0 5px -6px rgba(0, 0, 0, .1);
 }
 
 .blade.__animate
@@ -6073,6 +6087,11 @@ tags-input .tags .tag-item .remove-button
         .blade-content.__tree .inner-block
         {
             width: 316px;
+        }
+
+        .blade-content.__code-editor .inner-block
+        {
+            width: auto;
         }
 
     .blade .blade-loader
