@@ -5447,6 +5447,11 @@ tags-input .tags .tag-item .remove-button
     z-index: -1;
 }
 
+.blade.__active
+{
+    margin: 0 0 0 40px;
+}
+
 	.blade .blade-head,
 	.blade .blade-container
 	{
