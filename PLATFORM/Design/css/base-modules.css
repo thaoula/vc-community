@@ -3223,7 +3223,6 @@ fieldset + fieldset
     margin: 0 -10px 0 0;
 	min-width: 130px;
     overflow: hidden;
-    padding: 10px;
 	position: relative;
 	width: auto;
 }
@@ -3532,6 +3531,12 @@ fieldset + fieldset
 {
 	height: 250px;
 	width: 380px;
+}
+
+.tile.triple.wide.mini
+{
+    height: 120px;
+    width: 380px;
 }
 
 /* Quadro */
