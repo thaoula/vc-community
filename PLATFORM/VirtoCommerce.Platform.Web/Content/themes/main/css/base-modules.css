@@ -3251,6 +3251,11 @@ fieldset + fieldset
 	width: auto;
 }
 
+.tile-group + .tile-group
+{
+    margin: 20px 0 0;
+}
+
 .dashboard .tile-group
 {
     overflow: visible;
