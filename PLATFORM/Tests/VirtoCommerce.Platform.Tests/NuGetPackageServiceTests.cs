@@ -11,7 +11,7 @@ using VirtoCommerce.Platform.Data.Packaging.Repositories;
 namespace VirtoCommerce.Platform.Tests
 {
     [TestClass]
-    public class PackageServiceTests
+    public class NuGetPackageServiceTests
     {
         [TestMethod]
         public void ValidatePackage()
@@ -50,7 +50,7 @@ namespace VirtoCommerce.Platform.Tests
         }
 
 
-        private static PackageService GetPackageService()
+        private static NuGetPackageService GetPackageService()
         {
             var sourcePath = Path.GetFullPath("source");
             var modulesPath = Path.GetFullPath(@"target\modules");
@@ -64,7 +64,7 @@ namespace VirtoCommerce.Platform.Tests
                 projectSystem,
                 new ManifestPackageRepository(manifestProvider, new WebsitePackageRepository(packagesPath, projectSystem)));
 
-            var service = new PackageService(nugetProjectManager);
+            var service = new NuGetPackageService(nugetProjectManager);
             return service;
         }
 
