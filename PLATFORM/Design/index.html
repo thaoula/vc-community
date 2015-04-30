@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="chosen/chosen.css">
 
     <!-- Gridster CSS -->
-    <link rel="stylesheet" href="css/angular-gridster.min.css">
+    <link rel="stylesheet" href="css/angular-gridster.css">
 
 </head>
 <body>
@@ -129,17 +129,21 @@
                     <div class="dashboard-area">
                         <div class="dashboard-inner" ng-controller="gridsterController">
                             <script type="text/ng-template" id="tmp1.html">
-                                name: {{item.data.name}}
+                                <div class="gridster-cnt">
+                                    name: {{item.data.name}}
+                                </div>
                             </script>
                             <script type="text/ng-template" id="tmp2.html">
-                                icon:   <p><i class="sign-ico fa fa-sign-out"></i></p>
+                                <div class="gridster-cnt">
+                                icon: <i class="fa fa-signal"></i>
+                                </div>
                             </script>
                             <script type="text/ng-template" id="graph.html">
                                 <div google-chart chart="item.data.chartObject" style="height:100%"></div>
                             </script>
                             <div gridster="gridsterOpts">
-                                <ul>
-                                    <li gridster-item="item" ng-repeat="item in standardItems" ng-include="item.template"></li>
+                                <ul class="list">
+                                    <li class="list-item" gridster-item="item" ng-repeat="item in standardItems" ng-include="item.template"></li>
                                 </ul>
                             </div>
                         </div>
@@ -4020,6 +4024,42 @@
                                             <div class="tile triple wide mini __informer">
                                                 <p>No active theme, click to choose</p>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blade">
+                    <header class="blade-head">
+                        <div class="blade-status"></div>
+                        <div class="blade-nav">
+                            <ul class="menu __inline">
+                                <li class="menu-item __close __disabled">
+                                    <button disabled="disabled">
+                                        Close
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="blade-t __secondary">
+                            <i class="blade-t_ico fa fa-code"></i>
+                            <p class="blade-t_head">Content</p>
+                            <p class="blade-t_subhead">Conent service</p>
+                        </div>
+
+                    </header>
+                    <div class="blade-container">
+                        <div class="blade-content __xlarge-wide __gray">
+                            <div class="blade-inner">
+                                <div class="inner-block">
+                                    <div class="form">
+                                        <div class="iframe-cnt" style="background: #dee9f0; border: 1px dashed #a1c0d4;">
+                                            
+                                        </div>
+                                        <div class="lookbook">
+                                            
                                         </div>
                                     </div>
                                 </div>
