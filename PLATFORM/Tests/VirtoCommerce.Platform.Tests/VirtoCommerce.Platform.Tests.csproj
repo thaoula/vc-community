@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugLogger.cs" />
-    <Compile Include="PackageServiceTests.cs" />
+    <Compile Include="NuGetPackageServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
