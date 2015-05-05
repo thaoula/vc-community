@@ -6573,14 +6573,28 @@ input.ui-grid-filter-input[type="text"]
         .gridster .list-t
         {
             color: #4c4c4c;
-            font-size: 14px;
+            font-size: 12px;
+            font-weight: 500;
             margin: 0 0 5px;
         }
 
         .gridster .list-count
         {
             color: #43b0e6;
-            font-size: 30px;
+            font-size: 22px;
+            font-weight: 300;
+        }
+
+        .gridster .list-ico
+        {
+            color: #dee9f0;
+            font-size: 24px;
+            margin: 0 0 5px;
+        }
+
+        .gridster .list-item:hover .list-ico
+        {
+            color: #a1c0d4;
         }
 
 
