@@ -1,0 +1,14 @@
+﻿defaults:
+  -
+   scope:
+     path: ""
+     type: "posts"
+   values:
+     layout: "my-site"
+  -
+   scope:
+     path: "pages"
+     type: "pages"
+   values:
+     layout: "project2" # overrides previous default layout
+     author: "No one"
