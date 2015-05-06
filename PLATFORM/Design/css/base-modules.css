@@ -2161,9 +2161,20 @@ ol
 
     .list.__notice .list-item
     {
-        height: 29px;
-        line-height: 29px;
+        background: inherit;
+        height: 28px;
+        line-height: 28px;
+        position: inherit;
         text-align: left;
+
+        -webkit-box-shadow: inherit;
+                box-shadow: inherit;
+    }
+
+    .list.__notice .list-item:hover
+    {
+        -webkit-box-shadow: none;
+                box-shadow: none;
     }
 
         .list.__notice .list-link
