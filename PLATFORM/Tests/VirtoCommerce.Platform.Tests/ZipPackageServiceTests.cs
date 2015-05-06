@@ -1,25 +1,26 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NuGet;
 using VirtoCommerce.Platform.Core.Modularity;
 using VirtoCommerce.Platform.Core.Packaging;
 using VirtoCommerce.Platform.Data.Packaging;
-using VirtoCommerce.Platform.Data.Packaging.Repositories;
 
 namespace VirtoCommerce.Platform.Tests
 {
     [TestClass]
-    public class NuGetPackageServiceTests
+    public class ZipPackageServiceTests
     {
+        private static string _tempDir;
+
         [TestMethod]
         public void ValidatePackage()
         {
             var service = GetPackageService();
 
             // Load module descriptor from package
-            var module = service.OpenPackage(@"source\TestModule2.1.0.0.0.nupkg");
+            var module = service.OpenPackage(@"source\TestModule1_1.0.0.0.zip");
             WriteModuleLine(module);
 
             // Check if all dependencies are installed
@@ -34,37 +35,54 @@ namespace VirtoCommerce.Platform.Tests
             const string package2 = "TestModule2";
 
             var service = GetPackageService();
+            var progress = new Progress<ProgressMessage>(WriteProgressMessage);
+
             ListModules(service);
 
-            service.Install(package2, "1.0", null);
+            service.Install(package2, "1.0.0.0", progress);
             ListModules(service);
 
-            service.Update(package2, "1.1", null);
+            service.Install(package1, "1.0.0.0", progress);
             ListModules(service);
 
-            service.Uninstall(package2, null);
+            service.Install(package2, "1.0.0.0", progress);
             ListModules(service);
 
-            service.Uninstall(package1, null);
+            service.Update(package2, "1.1.0.0", progress);
+            ListModules(service);
+
+            service.Uninstall(package1, progress);
+            ListModules(service);
+
+            service.Uninstall(package2, progress);
+            ListModules(service);
+
+            service.Uninstall(package1, progress);
             ListModules(service);
         }
 
+        [ClassInitialize]
+        public static void Initialize(TestContext context)
+        {
+            _tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            Directory.CreateDirectory(_tempDir);
+        }
 
-        private static NuGetPackageService GetPackageService()
+        [ClassCleanup]
+        public static void Cleanup()
+        {
+            Directory.Delete(_tempDir, true);
+        }
+
+        private static IPackageService GetPackageService()
         {
             var sourcePath = Path.GetFullPath("source");
-            var modulesPath = Path.GetFullPath(@"target\modules");
-            var packagesPath = Path.GetFullPath(@"target\packages");
+            var modulesPath = Path.Combine(_tempDir, @"modules");
+            var packagesPath = Path.Combine(_tempDir, @"packages");
 
             var manifestProvider = new ModuleManifestProvider(modulesPath);
-            var projectSystem = new WebsiteProjectSystem(modulesPath);
 
-            var nugetProjectManager = new ProjectManager(new WebsiteLocalPackageRepository(sourcePath),
-                new DefaultPackagePathResolver(modulesPath),
-                projectSystem,
-                new ManifestPackageRepository(manifestProvider, new WebsitePackageRepository(packagesPath, projectSystem)));
-
-            var service = new NuGetPackageService(nugetProjectManager);
+            var service = new ZipPackageService(manifestProvider, packagesPath, sourcePath);
             return service;
         }
 
@@ -82,6 +100,11 @@ namespace VirtoCommerce.Platform.Tests
         static void WriteModuleLine(ModuleDescriptor module)
         {
             Debug.WriteLine("{0} {1}", module.Id, module.Version);
+        }
+
+        static void WriteProgressMessage(ProgressMessage message)
+        {
+            Debug.WriteLine("{0}: {1}", message.Level, message.Message);
         }
     }
 }
