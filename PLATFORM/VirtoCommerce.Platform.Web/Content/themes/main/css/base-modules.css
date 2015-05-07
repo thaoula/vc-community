@@ -1,6 +1,7 @@
 /* Fix by angular ng-animate */
 .ng-hide,
-.ng-hide-animate
+.ng-hide-animate,
+.__hide
 {
     display: none;
 }
