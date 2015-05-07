@@ -1,6 +1,7 @@
 /* Fix by angular ng-animate */
 .ng-hide,
-.ng-hide-animate
+.ng-hide-animate,
+.__hide
 {
     display: none;
 }
@@ -5959,11 +5960,6 @@ tags-input .tags .tag-item .remove-button
 			margin-right: 16px;
 		}
 
-		.blade-content.__medium-wide .form
-		{
-			margin-right: 20px;
-		}
-
 		.blade-content .table
 		{
 			min-width: 430px;
@@ -6420,6 +6416,7 @@ input.ui-grid-filter-input[type="text"]
             height: auto;
             padding: 0;
             vertical-align: middle;
+            word-spacing: 0;
         }
 
         .gridster .image
