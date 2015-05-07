@@ -105,6 +105,11 @@ namespace VirtoCommerce.Web
             if (String.IsNullOrEmpty(ctx.Language))
             {
                 language = shop.DefaultLanguage;
+                if (String.IsNullOrEmpty(language))
+                {
+                    throw new HttpException(404, "Store Language Not Designed");
+                }
+                
                 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(language);
                 ctx.Language = language;
             }
