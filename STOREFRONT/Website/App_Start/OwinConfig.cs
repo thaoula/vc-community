@@ -430,13 +430,16 @@ namespace VirtoCommerce.Web
             #endregion
 
             var theme = ConfigurationManager.AppSettings["Theme"];
-            var shopMetaFields = shop.Metafields["global"];
-            if (shopMetaFields != null)
+            if (shop.Metafields != null)
             {
-                object themeObject;
-                if (shop.Metafields["global"].TryGetValue("defaultThemeName", out themeObject))
+                var shopMetaFields = shop.Metafields["global"];
+                if (shopMetaFields != null)
                 {
-                    return themeObject.ToString();
+                    object themeObject;
+                    if (shop.Metafields["global"].TryGetValue("defaultThemeName", out themeObject))
+                    {
+                        return themeObject.ToString();
+                    }
                 }
             }
 
