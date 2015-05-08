@@ -6396,10 +6396,13 @@ input.ui-grid-filter-input[type="text"]
     .gridster .gridster-cnt,
     .gridster [ng-model="widget"]
     {
-        height: 100%;
-        position: relative;
+        cursor: pointer;
+        bottom: 5px;
+        left: 5px;
+        position: absolute;
+        right: 5px;
         text-align: center;
-        width: 100%;
+        top: 5px;
     }
 
     .gridster .gridster-cnt::after
@@ -6412,7 +6415,6 @@ input.ui-grid-filter-input[type="text"]
 
         .gridster-cnt .cnt-inner
         {
-            cursor: pointer;
             height: auto;
             padding: 0;
             vertical-align: middle;
