@@ -6362,6 +6362,11 @@ input.ui-grid-filter-input[type="text"]
     margin: 15px 0;
 }
 
+.gridster > ul
+{
+    height: 100%;
+}
+
     .gridster gridster-item,
     .gridster .list-item
     {
@@ -6376,6 +6381,13 @@ input.ui-grid-filter-input[type="text"]
 
         -webkit-box-shadow: 0 0 0 2px #dee9f0 inset;
                 box-shadow: 0 0 0 2px #dee9f0 inset;
+    }
+
+    .gridster .gridster-item-moving
+    {
+        opacity: .7;
+
+        filter: alpha(opacity=70);
     }
 
     .gridster gridster-item:hover,
@@ -6393,16 +6405,43 @@ input.ui-grid-filter-input[type="text"]
         border-width: 1px;
     }
 
+    .gridster .gridster-preview-holder
+    {
+        background: #dee9f0;
+        border-color: #a1c0d4;
+        border-style: dashed;
+        border-width: 1px;
+    }
+
     .gridster .gridster-cnt,
     .gridster [ng-model="widget"]
     {
-        cursor: pointer;
-        bottom: 5px;
-        left: 5px;
-        position: absolute;
-        right: 5px;
         text-align: center;
-        top: 5px;
+    }
+
+    .gridster .gridster-cnt
+    {
+        cursor: pointer;
+        bottom: 10px;
+        left: 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    .gridster [ng-model="widget"]
+    {
+        height: 100%;
+        width: 100%;
+    }
+
+    .gridster .gridster-cnt.__info
+    {
+        cursor: inherit;
+        bottom: 2px;
+        left: 2px;
+        right: 2px;
+        top: 2px;
     }
 
     .gridster .gridster-cnt::after
