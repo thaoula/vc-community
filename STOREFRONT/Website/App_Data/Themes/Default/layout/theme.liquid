@@ -1,0 +1,66 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-touch no-js">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    {% if settings.favicon_enable %}
+    <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+    {% endif %}
+
+    <!-- Title and description ================================================== -->
+    <title>{{ page_title }}</title>
+    {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}"/>
+    {% endif %}
+
+    <!-- Product meta ================================================== -->
+    {% include 'open-graph-tags' %}
+    {% include 'twitter-card' %}
+
+    <!-- Helpers ================================================== -->
+    <link rel="canonical" href="{{ canonical_url }}"/>
+
+    <!-- CSS ================================================== -->
+    {{ 'reset.css' | asset_url | stylesheet_tag }}
+    {{ 'fonts.css' | asset_url | stylesheet_tag }}
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+    {{ 'flags.css' | asset_url | stylesheet_tag }}
+    {{ 'responsive.css' | asset_url | stylesheet_tag }}
+    {% include 'google-fonts' %}
+
+    <!-- Header hook for plugins ================================================== -->
+    {{ content_for_header }}
+
+    {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+    {{ 'modernizr.min.js' | asset_url | script_tag }}
+    <script src="https://apis.google.com/js/platform.js" async="" defer=""></script>
+  </head>
+
+  <body>
+
+    @Html.Partial("_GoogleTagManagerPartial")
+
+    <div class="google-like">
+      <div class="g-plusone" data-size="tall" data-href="http://virtocommerce.com"></div>
+    </div>
+
+    <div class="grid"></div>
+    <div id="layout">
+      <div class="layout-canvas">
+        @Html.Partial("_SwipePartial")
+        @Html.Partial("_HeaderPartial")
+        {{ content_for_layout }}
+        @Html.Partial("_FooterPartial")
+      </div>
+    </div>
+    @Html.Partial("_GoogleAnalyticsPartial")
+    {% include 'footer' %}
+  </body>
+</html>
