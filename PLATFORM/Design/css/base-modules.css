@@ -2285,6 +2285,8 @@ ol
 	.menu.__context .menu-item
 	{
         color: #fff;
+        cursor: pointer;
+        font-family: 'Exo 2';
 		font-size: 13px;
 		padding: 5px 20px;
         text-align: left;
@@ -2328,6 +2330,70 @@ ol
         .menu.__context .menu-item:hover .menu.__sub
         {
             display: block;
+        }
+
+.list.__info
+{
+    margin: 15px 0;
+}
+
+    .list.__info > .list-item
+    {
+        padding: 5px 0;
+    }
+
+        .list.__info .list-t
+        {
+            color: #4c4c4c;
+            display: block;
+            font-size: 14px;
+        }
+
+        .list.__info .list-descr
+        {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .list.__info .list-link
+        {
+            font-size: 12px;
+        }
+
+        .list.__info .list-t,
+        .list.__info .list-descr
+        {
+            text-shadow: 1px 1px #fff;
+        }
+    
+.list.__tags
+{
+    margin: 5px 0 0;
+    word-spacing: -4px;
+}
+
+    .list.__tags .list-item
+    {
+        background: #43b0e6;
+        color: #fff;
+        display: inline-block;
+        line-height: 1.1;
+        margin: 0 5px 0 0;
+        padding: 5px 10px;
+        word-spacing: 0;
+    }
+
+        .list.__info .list-ico
+        {
+            font-size: 14px;
+            vertical-align: 2px;
+        }
+
+        .list.__tags .list-name
+        {
+            display: inline-block;
+            font-size: 12px;
+            vertical-align: 3px;
         }
 
 
@@ -2382,10 +2448,12 @@ h3
 
 .note
 {
-    color: #e51400;
-    font-size: 12px;
-    font-style: italic;
-    margin: 0 0 15px;
+    background: rgba(0, 0, 0, .024);
+    border: 1px solid #eee;
+    color: #999;
+    font-size: 14px;
+    margin: 20px 0;
+    padding: 10px;
 }
 
 .t,
@@ -2393,7 +2461,6 @@ h3
 {
 	font-weight: 300;
 	line-height: 1;
-	margin: 20px 0 10px;
 }
 
 .sub-t.__border
@@ -2401,6 +2468,27 @@ h3
     border-bottom: 1px solid #dee9f0;
     margin: 20px 0 0;
     padding: 0 0 10px;
+}
+
+.t + .t,
+.sub-t + .sub-t
+{
+    margin: 20px 0 10px;
+}
+
+.t.__divider
+{
+    background: #fbfdfe;
+    border-color: #dee9f0;
+    border-style: solid;
+    border-width: 1px 0;
+    margin: 0 -20px 10px;
+    padding: 10px 20px;
+}
+
+.t.__divider + .t.__divider
+{
+    margin-top: 20px;
 }
 
 .__right
@@ -2781,6 +2869,7 @@ fieldset + fieldset
             max-width: 100%;
             min-height: 110px;
             min-width: 100%;
+            overflow: auto;
             padding-top: 8px;
             resize: none;
         }
@@ -4577,64 +4666,6 @@ fieldset + fieldset
 }
 
 
-/* Loader */
-.loader
-{
-    display: block;
-    height: 75px;
-    margin: 0 auto;
-    position: relative;
-    width: 350px;
-}
-
-    .loader span
-    {
-        background: #dee9f0;
-        height: 20px;
-        position: absolute;
-        top: 25px;
-        width: 20px;
-
-        -webkit-animation: loader 2.5s infinite ease;
-                animation: loader 2.5s infinite ease;
-    }
-
-    .loader span:nth-child(1)
-    {
-        -webkit-animation-delay: .8s;
-                animation-delay: .8s;
-    }
-
-    .loader span:nth-child(2)
-    {
-        left: 30px;
-
-        -webkit-animation-delay: .6s;
-                animation-delay: .6s;
-    }
-
-    .loader span:nth-child(3)
-    {
-        left: 60px;
-
-        -webkit-animation-delay: .4s;
-                animation-delay: .4s;
-    }
-
-    .loader span:nth-child(4)
-    {
-        left: 90px;
-
-        -webkit-animation-delay: .2s;
-                animation-delay: .2s;
-    }
-
-    .loader span:nth-child(5)
-    {
-        left: 120px;
-    }
-
-
 /* Calendar */
 .form-input.__calendar .dropdown-menu
 {
@@ -5063,6 +5094,21 @@ tags-input .tags .tag-item .remove-button
 				font-size: 13px;
 				padding: 15px 0;
 			}
+
+        .nav-bar .menu-item.__done
+        {
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+            .nav-bar .menu-item.__done .menu-link
+            {
+                background: #43b0e6;
+                color: #fff;
+                cursor: pointer;
+            }
 
             .nav-bar .menu-link.__counted,
             .nav-bar .menu-link.__animated
@@ -5767,6 +5813,14 @@ tags-input .tags .tag-item .remove-button
 		position: relative;
 	}
 
+    .blade .blade-container.__loading
+    {
+        opacity: .25;
+        pointer-events: none;
+
+        filter: alpha(opacity=25);
+    }
+
 		.blade-container .blade-static
 		{
 			background: #fbfdfe;
@@ -5917,7 +5971,7 @@ tags-input .tags .tag-item .remove-button
 
 	.blade .blade-content
 	{
-		width: 436px;
+		width: 420px;
 		white-space: normal;
 	}
 
@@ -5938,28 +5992,25 @@ tags-input .tags .tag-item .remove-button
 
 	.blade .blade-content.__medium-wide
 	{
-		width: 566px;
+		width: 550px;
 	}
 
     .blade .blade-content.__large-wide
     {
-        width: 696px;
+        width: 680px;
     }
 
     .blade .blade-content.__xlarge-wide
     {
-        width: 826px;
+        width: 810px;
     }
 
     .blade .blade-content.__tree
     {
-        width: 356px;
+        width: 340px;
     }
 
-		.blade-content .form
-		{
-			margin-right: 16px;
-		}
+		
 
 		.blade-content .table
 		{
@@ -6037,22 +6088,22 @@ tags-input .tags .tag-item .remove-button
 
 		.blade-inner .inner-block
 		{
-			width: 396px;
+			width: 380px;
 		}
 
 		.blade-content.__medium-wide .inner-block
 		{
-			width: 526px;
+			width: 510px;
 		}
 
         .blade-content.__large-wide .inner-block
         {
-            width: 656px;
+            width: 640px;
         }
 
         .blade-content.__tree .inner-block
         {
-            width: 316px;
+            width: 300px;
         }
 
         .blade-content.__code-editor .inner-block,
@@ -6368,6 +6419,11 @@ input.ui-grid-filter-input[type="text"]
     height: 100%;
 }
 
+.gridster > .list.__editing
+{
+    background: url(../images/grid.png) repeat scroll 0 0;
+}
+
     .gridster gridster-item,
     .gridster .list-item
     {
@@ -6397,6 +6453,26 @@ input.ui-grid-filter-input[type="text"]
         -webkit-box-shadow: 0 0 0 2px #a1c0d4 inset;
                 box-shadow: 0 0 0 2px #a1c0d4 inset;
     }
+
+    .gridster .list:not(.__editing) .list-item .customize
+    {
+        background: #a1c0d4;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+        left: 0;
+        padding: 3px 10px;
+        position: absolute;
+        text-align: center;
+        top: -22px;
+        z-index: 50;
+    }
+
+        .customize .custom-ico
+        {
+            color: #fff;
+            font-size: 12px;
+        }
 
     .gridster-preview-holder
     {
