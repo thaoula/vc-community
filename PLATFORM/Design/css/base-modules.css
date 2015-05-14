@@ -2421,6 +2421,7 @@ h3
 .sub-t
 {
 	font-size: 24px;
+    margin: 20px 0 10px;
 }
 
 .text
@@ -3277,9 +3278,15 @@ fieldset + fieldset
 	font-family: inherit;
 	font-size: 13px;
     height: 30px;
-    line-height: 26px;
+    line-height: 28px;
     padding: 0 20px;
     text-shadow: 1px 1px rgba(0, 0, 0, .1);
+    vertical-align: text-top;
+}
+
+button.btn
+{
+    padding: 0 17px;
 }
 
 .btn.__loading
@@ -3328,7 +3335,10 @@ fieldset + fieldset
 
 .btn:hover
 {
-	background-color: #40a8db;
+    color: #fff;
+	opacity: .8;
+
+    filter: alpha(opacity=80);
 }
 
 .btn.__cancel
