@@ -2421,6 +2421,7 @@ h3
 .sub-t
 {
 	font-size: 24px;
+    margin: 20px 0 10px;
 }
 
 .text
@@ -2513,7 +2514,13 @@ h3
 	border-collapse: collapse;
 	border-spacing: 0;
 	padding: 0;
+    table-layout: fixed;
 	width: 100%;
+}
+
+.table.__normal
+{
+    table-layout: auto;
 }
 
 	.table .table-item
@@ -2588,6 +2595,7 @@ h3
 		.table-col .table-date
 		{
 			color: #999;
+            font-size: 12px;
 		}
 
 		.table-col .product-img
@@ -3277,9 +3285,15 @@ fieldset + fieldset
 	font-family: inherit;
 	font-size: 13px;
     height: 30px;
-    line-height: 26px;
+    line-height: 28px;
     padding: 0 20px;
     text-shadow: 1px 1px rgba(0, 0, 0, .1);
+    vertical-align: text-top;
+}
+
+button.btn
+{
+    padding: 0 17px;
 }
 
 .btn.__loading
@@ -3328,7 +3342,10 @@ fieldset + fieldset
 
 .btn:hover
 {
-	background-color: #40a8db;
+    color: #fff;
+	opacity: .8;
+
+    filter: alpha(opacity=80);
 }
 
 .btn.__cancel
@@ -3522,7 +3539,7 @@ fieldset + fieldset
 
 .__images-list .tile
 {
-	line-height: 120px;
+	line-height: 100px;
 }
 
 .tile .tile-ico
@@ -3626,7 +3643,7 @@ fieldset + fieldset
 
 .__images-list .tile.double
 {
-	line-height: 250px;
+	line-height: 230px;
 }
 
 .tile.double .tile-ico
@@ -6014,12 +6031,12 @@ tags-input .tags .tag-item .remove-button
 
 		.blade-content .table
 		{
-			min-width: 430px;
+			min-width: 420px;
 		}
 
 		.blade-content.__medium-wide .table
 		{
-			min-width: 570px;
+			min-width: 550px;
 		}
 
 	.blade .blade-content.blade-large
