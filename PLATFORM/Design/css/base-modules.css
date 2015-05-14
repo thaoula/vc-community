@@ -2514,7 +2514,13 @@ h3
 	border-collapse: collapse;
 	border-spacing: 0;
 	padding: 0;
+    table-layout: fixed;
 	width: 100%;
+}
+
+.table.__normal
+{
+    table-layout: auto;
 }
 
 	.table .table-item
@@ -2589,6 +2595,7 @@ h3
 		.table-col .table-date
 		{
 			color: #999;
+            font-size: 12px;
 		}
 
 		.table-col .product-img
@@ -3532,7 +3539,7 @@ button.btn
 
 .__images-list .tile
 {
-	line-height: 120px;
+	line-height: 100px;
 }
 
 .tile .tile-ico
@@ -3636,7 +3643,7 @@ button.btn
 
 .__images-list .tile.double
 {
-	line-height: 250px;
+	line-height: 230px;
 }
 
 .tile.double .tile-ico
@@ -6024,12 +6031,12 @@ tags-input .tags .tag-item .remove-button
 
 		.blade-content .table
 		{
-			min-width: 430px;
+			min-width: 420px;
 		}
 
 		.blade-content.__medium-wide .table
 		{
-			min-width: 570px;
+			min-width: 550px;
 		}
 
 	.blade .blade-content.blade-large
