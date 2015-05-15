@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using VirtoCommerce.Platform.Web
+<!DOCTYPE html>
 <html lang="en" ng-app="platformWebApp">
 <head>
     <meta charset="utf-8" />
@@ -19,7 +20,7 @@
 </head>
 <body class="metro" ng-controller="platformWebApp.appCtrl">
     <script type="text/javascript">
-        var platformVersion = '@Html.Encode(typeof(VirtoCommerce.Platform.Web.Startup).Assembly.GetName().Version.ToString())';
+        var platformVersion = '@Html.Version()';
     </script>
     @Html.Partial("_GoogleAnalyticsPartial")
     @RenderBody()
