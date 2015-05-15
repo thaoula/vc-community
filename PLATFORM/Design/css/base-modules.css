@@ -3752,7 +3752,6 @@ button.btn
 .tile .tile-img
 {
 	display: inline-block;
-	margin: -24px 0 0;
 	max-height: 100%;
 	max-width: 100%;
 	vertical-align: middle;
