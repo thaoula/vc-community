@@ -5410,6 +5410,14 @@ tags-input .tags .tag-item .remove-button
                             top: 0;
                         }
 
+                        .dropdown-content .list-bar
+                        {
+                            background-color: #43b0e6;
+                            display: block;
+                            height: 10px;
+                            margin-left: 55px;
+                        }
+
 /* Content - main content area */
 .cnt
 {
