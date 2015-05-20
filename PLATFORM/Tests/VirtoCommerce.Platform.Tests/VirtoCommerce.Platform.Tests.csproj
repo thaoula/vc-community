@@ -82,19 +82,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="source\Sample.TestModule1_1.0.0.0.zip">
+    <None Include="source\Sample.TestModule1_1.0.0.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="source\TestModule1_1.0.0.0.zip">
+    <None Include="source\TestModule1_1.0.0.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="source\TestModule1_1.1.0.0.zip">
+    <None Include="source\TestModule1_1.1.0.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="source\TestModule2_1.0.0.0.zip">
+    <None Include="source\TestModule2_1.0.0.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="source\TestModule2_1.1.0.0.zip">
+    <None Include="source\TestModule2_1.1.0.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VirtoCommerce.Platform.Core.Modularity;
 using VirtoCommerce.Platform.Core.Packaging;
@@ -20,12 +19,11 @@ namespace VirtoCommerce.Platform.Tests
             var service = GetPackageService();
 
             // Load module descriptor from package
-            var module = service.OpenPackage(@"source\TestModule1_1.0.0.0.zip");
+            var module = service.OpenPackage(@"source\Sample.TestModule1_1.0.0.zip");
             WriteModuleLine(module);
 
             // Check if all dependencies are installed
-            var modules = service.GetModules();
-            var allDependeciesAreInstalled = module.Dependencies.All(dependency => modules.Any(m => m.Id == dependency));
+            var dependencyErrors = service.GetDependencyErrors(module);
         }
 
         [TestMethod]
@@ -39,16 +37,22 @@ namespace VirtoCommerce.Platform.Tests
 
             ListModules(service);
 
-            service.Install(package2, "1.0.0.0", progress);
+            service.Install(package2, "1.0.0", progress);
             ListModules(service);
 
-            service.Install(package1, "1.0.0.0", progress);
+            service.Install(package1, "1.0.0", progress);
             ListModules(service);
 
-            service.Install(package2, "1.0.0.0", progress);
+            service.Install(package2, "1.0.0", progress);
             ListModules(service);
 
-            service.Update(package2, "1.1.0.0", progress);
+            service.Update(package2, "1.1.0", progress);
+            ListModules(service);
+
+            service.Update(package1, "1.1.0", progress);
+            ListModules(service);
+
+            service.Update(package2, "1.1.0", progress);
             ListModules(service);
 
             service.Uninstall(package1, progress);
