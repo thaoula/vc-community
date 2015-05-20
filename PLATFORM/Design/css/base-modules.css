@@ -2443,6 +2443,18 @@ h3
     word-wrap: break-word;
 }
 
+.text.__note
+{
+    border: 1px solid #eee;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.text.__note span:first-child
+{
+    color: #e51400;
+}
+
 .sub-text
 {
 	font-size: 14px;
