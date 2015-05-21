@@ -4652,9 +4652,9 @@ button.btn
     padding: 15px 0;
 }
 
-.form > .columns
+.form .columns
 {
-    padding-top: 0;
+    padding: 0;
 }
 
 .column:nth-last-child(2),
@@ -6453,7 +6453,6 @@ input.ui-grid-filter-input[type="text"]
 .gridster
 {
     list-style: none;
-    margin: 15px 0;
 }
 
 .gridster > ul
