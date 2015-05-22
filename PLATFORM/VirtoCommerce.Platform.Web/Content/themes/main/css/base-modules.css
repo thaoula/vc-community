@@ -3787,6 +3787,35 @@ button.btn
     margin: 15px -20px;
 }
 
+    .__items .list-group
+    {
+        background: #fbfdfe;
+        border-bottom: 1px solid #dee9f0;
+        cursor: pointer;
+        font-size: 24px;
+        padding: 10px 50px 10px 20px;
+        position: relative;
+    }
+
+    .__items .list-group::after
+    {
+        color: #a6a6a6;
+        content: '';
+        font-family: 'FontAwesome';
+        font-size: 16px;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+
+        -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+    }
+
+    .__items .list-group.__opened::after
+    {
+        content: '';
+    }
+
     .__items .list-item
 	{
         background: #fff;
@@ -3796,6 +3825,17 @@ button.btn
 		padding: 10px 50px 10px 20px;
 		position: relative;
 	}
+
+    .__items .list-group + .list.__sub
+    {
+        display: none;
+        margin: -1px 0 0;
+    }
+
+    .__items .list-group.__opened + .list.__sub
+    {
+        display: block;
+    }
 
     .__items .list-item.__default
     {
@@ -3996,12 +4036,13 @@ button.btn
         .__items label.list-item :checked ~ .switch,
         .__items label.list-item.__selected .switch
         {
-            background: #fbfdfe;
+            background: #ecf7fc;
 
             -webkit-box-shadow: 0 0 0 1px #a1c0d4;
                     box-shadow: 0 0 0 1px #a1c0d4;
         }
 
+        .__items label.list-item :checked ~ .switch,
         .__items label.list-item.__selected .switch
         {
             -webkit-box-shadow: 0 0 0 1px #dee9f0;
