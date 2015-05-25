@@ -2416,7 +2416,17 @@ h2
 
 h3
 {
-	font-size: 200%;
+	font-size: 225%;
+}
+
+h1,
+h2,
+h3
+{
+    color: #4c4c4c;
+    font-weight: 300;
+    line-height: 1;
+    margin: 20px 0;
 }
 
 .t
@@ -2448,6 +2458,15 @@ h3
     border: 1px solid #eee;
     margin: 10px 0;
     padding: 10px;
+}
+
+.text.__editable
+{
+    background: #fbfdfe;
+    border: 1px dashed #dee9f0;
+    color: #43b0e6;
+    cursor: text;
+    padding: 5px 10px;
 }
 
 .text.__note span:first-child
@@ -2836,16 +2855,6 @@ fieldset + fieldset
             float: right;
             margin: 4px 0 0;
         }
-
-    .form-group .text.__editable
-    {
-        background: #fbfdfe;
-        border: 1px dashed #dee9f0;
-        color: #43b0e6;
-        cursor: text;
-        line-height: 1;
-        padding: 5px 10px 8px;
-    }
     
     .form-group .text.__editable:hover,
     .form-group .text.__editable.__selected
