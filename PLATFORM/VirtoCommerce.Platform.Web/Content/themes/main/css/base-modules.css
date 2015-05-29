@@ -5208,7 +5208,7 @@ button.btn
     border-style: solid;
     border-width: 5px 4px;
     content: '';
-    margin: -4px 0 0;
+    margin: -3px 0 0;
     position: absolute;
     right: 10px;
     top: 50%;
@@ -5279,12 +5279,13 @@ button.btn
 
 .select2-search-choice-close:after
 {
-    color: #fff;
+    color: #43b0e6;
     content: '×';
     font-family: caption;
     font-size: 16px;
     font-weight: bold;
     text-shadow: none;
+    top: 0;
 }
 
 
