@@ -3323,23 +3323,6 @@ fieldset + fieldset
                         transition: background .15s ease;
             }
 
-            .__switch.__three .switch,
-            .__switch.__four .switch
-            {
-                border: 1px solid #ccc;
-
-                -webkit-box-shadow: none;
-                        box-shadow: none;
-            }
-
-            .__switch.__three .switch,
-            .__switch.__four .switch,
-            .__switch.__three :checked ~ .switch,
-            .__switch.__four :checked ~ .switch
-            {
-                background: #fff;
-            }
-
             .__switch :checked ~ .switch
             {
                 background: #43b0e6;
@@ -3367,43 +3350,9 @@ fieldset + fieldset
                         transition: margin-left .15s ease;
             }
 
-            .__switch.__three .switch::after,
-            .__switch.__four .switch::after
-            {
-                background: #43b0e6;
-                content: '';
-                left: 1px;
-                width: 30px;
-            }
-
-            .__switch.__four .switch::after
-            {
-                left: -1px;
-                height: 22px;
-                margin: 0;
-                top: 0;
-
-                -webkit-border-radius: 3px 0 0 3px;
-                        border-radius: 3px 0 0 3px;
-            }
-
             .__switch :checked ~ .switch::after
             {
                 margin-left: 34px;
-            }
-
-            .__switch.__three :checked ~ .switch::after,
-            .__switch.__four :checked ~ .switch::after
-            {
-                margin-left: 29px;
-            }
-
-            .__switch.__four :checked ~ .switch::after
-            {
-                margin-left: 33px;
-
-                -webkit-border-radius: 0 3px 3px 0;
-                        border-radius: 0 3px 3px 0;
             }
 
             .__switch .switch::before
@@ -3426,78 +3375,6 @@ fieldset + fieldset
                 content: '';
                 left: 0;
                 right: auto;
-            }
-
-            /* Two */
-            .__switch.__two .switch::before,
-            .__switch.__two :checked ~ .switch::before
-            {
-                content: '';
-            }
-
-            /* Three */
-            .__switch.__three .switch::before,
-            .__switch.__three :checked ~ .switch::before,
-            .__switch.__four .switch::before,
-            .__switch.__four :checked ~ .switch::before
-            {
-                content: '';
-            }
-
-            .__switch.__three .els::after,
-            .__switch.__three .els::before,
-            .__switch.__four .els::after,
-            .__switch.__four .els::before
-            {
-                color: #4c4c4c;
-                content: '';
-                font-family: 'FontAwesome';
-                position: absolute;
-                text-align: center;
-                top: 2px;
-                width: 30px;
-                z-index: 55;
-
-                -webkit-transition: color .15s ease;
-                        transition: color .15s ease;
-            }
-
-            .__switch.__three .els::after,
-            .__switch.__four .els::after
-            {
-                color: #4c4c4c;
-                content: '';
-                right: 0;
-            }
-
-            .__switch.__four .els::after
-            {
-                right: -1px;
-            }
-
-            .__switch.__three .els::before,
-            .__switch.__four .els::before
-            {
-                color: #fff;
-                content: '';
-                left: 1px;
-            }
-
-            .__switch.__four .els::before
-            {
-                left: 0;
-            }
-
-            .__switch.__three :checked ~ .els::after,
-            .__switch.__four :checked ~ .els::after
-            {
-                color: #fff;
-            }
-
-            .__switch.__three :checked ~ .els::before,
-            .__switch.__four :checked ~ .els::before
-            {
-                color: #4c4c4c;
             }
 
 .editable
@@ -6038,7 +5915,7 @@ tags-input .tags .tag-item .remove-button
 
         .blade-head .blade-switch
         {
-            bottom: 2px;
+            bottom: 4px;
             position: absolute;
             right: 28px;
             text-align: center;
