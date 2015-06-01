@@ -3265,6 +3265,7 @@ fieldset + fieldset
         .__switch
         {
             cursor: pointer;
+            display: inline-block;
             margin: 0;
             position: relative;
             vertical-align: top;
@@ -5154,6 +5155,11 @@ button.btn
     top: 6px;
 }
 
+.select2-container .select2-choice abbr
+{
+    top: 5px;
+}
+
 .select2-search-choice-close:after
 {
     color: #43b0e6;
@@ -5161,6 +5167,7 @@ button.btn
     font-family: caption;
     font-size: 16px;
     font-weight: bold;
+    line-height: 1;
     text-shadow: none;
     top: 0;
 }
