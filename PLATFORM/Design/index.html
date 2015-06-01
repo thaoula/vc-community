@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/base-modules.css">
     <link rel="stylesheet" href="css/project-modules.css">
     <link rel="stylesheet" href="css/cosmetic.css">
+    <link rel="stylesheet" href="css/modules/catalog.css">
     <link rel="stylesheet" href="css/modules/order.css">
     <link rel="stylesheet" href="css/modules/dynamic-expression.css">
     <link rel="stylesheet" href="chosen/chosen.css">
@@ -1657,12 +1658,10 @@
                         </div>
                         <div class="blade-switch">
                             <span class="switch-t">Primary</span>
-                            <div class="form-control __switch">
-                                <label class="form-label">
-                                    <input type="checkbox">
-                                    <span class="switch"></span>
-                                </label>
-                            </div>
+                            <label class="form-label __switch">
+                                <input type="checkbox">
+                                <span class="switch"></span>
+                            </label>
                         </div>
                     </header>
                     <div class="blade-container">
@@ -2276,12 +2275,10 @@
                         </div>
                         <div class="blade-switch">
                             <span class="switch-t">Approved</span>
-                            <div class="form-control __switch">
-                                <label class="form-label">
-                                    <input type="checkbox">
-                                    <span class="switch"></span>
-                                </label>
-                            </div>
+                            <label class="form-label __switch">
+                                <input type="checkbox">
+                                <span class="switch"></span>
+                            </label>
                         </div>
                     </header>
                     <div class="blade-container">
@@ -4327,6 +4324,93 @@
                         </div>
                     </div>
                 </div>
+                <div class="blade">
+                    <header class="blade-head">
+                        <div class="blade-status"></div>
+                        <div class="blade-nav">
+                            <ul class="menu __inline">
+                                <li class="menu-item __minimize">
+                                    Minimize
+                                </li>
+                                <li class="menu-item __maximize">
+                                    Maximize
+                                </li>
+                                <li class="menu-item __close">
+                                    Close
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="blade-toolbar">
+                            <ul class="menu __inline">
+                                <li class="menu-item">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-plus"></i>
+                                        Add
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-edit"></i>
+                                        Manage
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-download"></i>
+                                        Import
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-upload"></i>
+                                        Export
+                                    </a>
+                                </li>
+                                <li class="menu-item __disabled">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-trash-o"></i>
+                                        Delete
+                                    </a>
+                                </li>
+                                <li class="menu-item __more">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-ellipsis-h"></i>
+                                        More
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="menu __inline __more">
+                                <li class="menu-item">
+                                    <div class="blade-switch">
+                                        <div class="switch-t">Primary</div>
+                                        <label class="form-label __switch">
+                                            <input type="checkbox">
+                                            <span class="switch"></span>
+                                        </label>
+                                    </div>
+                                </li>
+                                <li class="menu-item">
+                                    <div class="blade-switch">
+                                        <div class="switch-t">Approved</div>
+                                        <label class="form-label __switch">
+                                            <input type="checkbox" checked>
+                                            <span class="switch"></span>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </header>
+                    <div class="blade-container">
+                        <div class="blade-content">
+                            <div class="blade-inner">
+                                <div class="inner-block">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </article>
     </div>
@@ -4359,6 +4443,10 @@
                         $(this).removeAttr('style').removeClass('__animate');
                     });
                 }, 100);
+            });
+
+            $('.menu-item.__more').on('click', function () {
+                $(this).parents('.blade-head').toggleClass('__expanded');
             });
 
             $('body').delegate('.blade-nav .menu-item.__close', 'click', function () {
