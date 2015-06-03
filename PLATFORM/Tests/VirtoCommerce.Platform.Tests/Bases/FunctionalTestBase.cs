@@ -4,8 +4,36 @@ using System.IO;
 
 namespace VirtoCommerce.Platform.Tests.Bases
 {
-    public abstract class FunctionalTestBase : TestBase
+    public abstract class RepositoryTestBase<TRepository, TInitializer> : FunctionalTestBase
+        where TRepository : DbContext, new()
+        where TInitializer : IDatabaseInitializer<TRepository>, new()
     {
+        public new void Dispose()
+        {
+            try
+            {
+                var repository = this.GetRepository<TRepository, TInitializer>();
+                repository.Database.Delete();
+            }
+            finally
+            {
+                base.Dispose();
+            }
+        }
+
+        protected virtual TRepository GetRepository()
+        {
+            return GetRepository<TRepository, TInitializer>();
+        }
+    }
+
+    public abstract class FunctionalTestBase : TestBase, IDisposable
+    {
+        public static string DatabaseConnectionString
+        {
+            get { return @"Data Source=(LocalDb)\v11.0;Initial Catalog=VirtoCommerceTest;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\VirtoCommerceTest.mdf"; }
+        }
+
         public static string TempPath
         {
             get
@@ -13,6 +41,23 @@ namespace VirtoCommerce.Platform.Tests.Bases
                 return Path.GetTempPath();
             }
         }
+
+        private readonly object _previousDataDirectory;
+
+        protected FunctionalTestBase()
+		{
+			_previousDataDirectory = AppDomain.CurrentDomain.GetData("DataDirectory");
+			AppDomain.CurrentDomain.SetData("DataDirectory", TempPath);
+		}
+
+        protected virtual TRepository GetRepository<TRepository, TInitializer>()
+            where TRepository : DbContext, new()
+            where TInitializer : IDatabaseInitializer<TRepository>, new()
+        {
+            EnsureDatabaseInitialized(() => (TRepository)Activator.CreateInstance(typeof(TRepository), DatabaseConnectionString), () => Database.SetInitializer(new TInitializer()));
+            return (TRepository)Activator.CreateInstance(typeof(TRepository), DatabaseConnectionString);
+        }
+
 
         /// <summary>
         /// Ensures the database for the context is created and seeded.  This is typically used
@@ -66,5 +111,17 @@ namespace VirtoCommerce.Platform.Tests.Bases
             DropDatabase(createContext);
             EnsureDatabaseInitialized(createContext, initializer);
         }
+
+        #region Implementation of IDisposable
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            AppDomain.CurrentDomain.SetData("DataDirectory", _previousDataDirectory);
+        }
+
+        #endregion
     }
 }
