@@ -58,6 +58,7 @@
     <Compile Include="Bases\FunctionalTestBase.cs" />
     <Compile Include="Bases\MigrationsTestBase.cs" />
     <Compile Include="Bases\TestBase.cs" />
+    <Compile Include="Fixtures\RepositoryDatabaseFixture.cs" />
     <Compile Include="Helpers\EmptyContext.cs" />
     <Compile Include="Helpers\InfoContext.cs" />
     <Compile Include="Helpers\SqlTestDatabase.cs" />

@@ -5,50 +5,6 @@ using System.IO;
 namespace VirtoCommerce.Platform.Tests.Bases
 {
 
-    /*
-     * 
-     * http://xunit.github.io/docs/shared-context.html#class-fixture
-    public class RepositoryFixture<TRepository, TInitializer> : IDisposable
-    {
-        public RepositoryFixture()
-        {
-            Db = new SqlConnection("MyConnectionString");
-
-            // ... initialize data in the test database ...
-        }
-
-        public void Dispose()
-        {
-            // ... clean up test data from the database ...
-        }
-
-        public SqlConnection Db { get; private set; }
-    }
-     * */
-
-    public abstract class RepositoryTestBase<TRepository, TInitializer> : FunctionalTestBase
-        where TRepository : DbContext, new()
-        where TInitializer : IDatabaseInitializer<TRepository>, new()
-    {
-        public new void Dispose()
-        {
-            try
-            {
-                var repository = this.GetRepository<TRepository, TInitializer>();
-                repository.Database.Delete();
-            }
-            finally
-            {
-                base.Dispose();
-            }
-        }
-
-        protected virtual TRepository GetRepository()
-        {
-            return GetRepository<TRepository, TInitializer>();
-        }
-    }
-
     public abstract class FunctionalTestBase : TestBase, IDisposable
     {
         public static string DatabaseConnectionString
