@@ -4,6 +4,26 @@ using System.IO;
 
 namespace VirtoCommerce.Platform.Tests.Bases
 {
+
+    /*
+    public class RepositoryFixture<TRepository, TInitializer> : IDisposable
+    {
+        public RepositoryFixture()
+        {
+            Db = new SqlConnection("MyConnectionString");
+
+            // ... initialize data in the test database ...
+        }
+
+        public void Dispose()
+        {
+            // ... clean up test data from the database ...
+        }
+
+        public SqlConnection Db { get; private set; }
+    }
+     * */
+
     public abstract class RepositoryTestBase<TRepository, TInitializer> : FunctionalTestBase
         where TRepository : DbContext, new()
         where TInitializer : IDatabaseInitializer<TRepository>, new()
