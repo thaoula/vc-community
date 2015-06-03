@@ -6,6 +6,8 @@ namespace VirtoCommerce.Platform.Tests.Bases
 {
 
     /*
+     * 
+     * http://xunit.github.io/docs/shared-context.html#class-fixture
     public class RepositoryFixture<TRepository, TInitializer> : IDisposable
     {
         public RepositoryFixture()
