@@ -4203,18 +4203,18 @@ button.btn
             color: #a6a6a6;
         }
 
-.list.__choosen
+.list.__chosen
 {
     margin: 10px 0;
 }
 
-    .__choosen .list-item
+    .__chosen .list-item
     {
         margin: 0 10px 10px 0;
         position: relative;
     }
 
-        .__choosen .list-name
+        .__chosen .list-name
         {
             background: #43b0e6;
             color: #fff;
@@ -4230,7 +4230,7 @@ button.btn
             white-space: nowrap;
         }
 
-        .__choosen .list-remove
+        .__chosen .list-remove
         {
             color: #a1c0d4;
             cursor: pointer;
@@ -4242,7 +4242,7 @@ button.btn
             margin: 3px 4px 0 0;
         }
 
-        .__choosen .list-remove:hover
+        .__chosen .list-remove:hover
         {
             color: #43b0e6;
         }
