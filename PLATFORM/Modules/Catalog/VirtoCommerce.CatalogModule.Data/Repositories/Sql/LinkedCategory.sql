@@ -1,0 +1,8 @@
+﻿INSERT INTO [dbo].[CategoryRelation] ([Id],[SourceCategoryId],[TargetCategoryId]) VALUES (N'012e8a918fa54dd49d810dbb149025ff', N'949a770c-90b6-4e70-99ae-4e14c7686a91', N'b792bf4e-72d6-49c9-8e42-ec04fa0057e1')
+INSERT INTO [dbo].[CategoryRelation] ([Id],[SourceCategoryId],[TargetCategoryId]) VALUES (N'2af11cbf3d1341a9adf897b2319b58ef', N'a3f6d687-ce95-4e58-a8c5-b189864e72c0', N'b792bf4e-72d6-49c9-8e42-ec04fa0057e1')
+INSERT INTO [dbo].[CategoryRelation] ([Id],[SourceCategoryId],[TargetCategoryId]) VALUES (N'56de06e574cb4fcd80dcb1098ec90c0e', N'59c7c46e-fa2a-4990-83b5-0e222cfd89a9', N'f4b5e1d1-8a4a-46fc-a163-c653644b1316')
+INSERT INTO [dbo].[CategoryRelation] ([Id],[SourceCategoryId],[TargetCategoryId]) VALUES (N'7da306f7ae7849dbb713879b08159e17', N'66b58f4c-fd62-4c17-ab3b-2fb22e82704a', N'e1b56012-d877-4bdd-92d8-3fc186899d0f')
+INSERT INTO [dbo].[CategoryRelation] ([Id],[SourceCategoryId],[TargetCategoryId]) VALUES (N'8cb4f9a261584ee4a45b126634d99028', N'c7ff471f-1268-4968-b1a0-b95aee13212d', N'f4b5e1d1-8a4a-46fc-a163-c653644b1316')
+INSERT INTO [dbo].[CategoryRelation] ([Id],[SourceCategoryId],[TargetCategoryId]) VALUES (N'aae59e123cdf426188774aae3443d30c', N'50212f0f-bd87-4486-a053-5065296579ad', N'e1b56012-d877-4bdd-92d8-3fc186899d0f')
+INSERT INTO [dbo].[CategoryRelation] ([Id],[SourceCategoryId],[TargetCategoryId]) VALUES (N'dc8fc3026f434e5eb12c769f28523c1d', N'2abeec21-a71e-47f5-8d25-329a21d1bcdc', N'f4b5e1d1-8a4a-46fc-a163-c653644b1316')
+INSERT INTO [dbo].[CategoryRelation] ([Id],[SourceCategoryId],[TargetCategoryId]) VALUES (N'febb56213f5941e09b64e3c8e6a75bc5', N'95b923fb-d281-4e2f-ac5d-5c5003a5bb23', N'd3078a66-a9a7-46b8-9d91-28204209044d')
