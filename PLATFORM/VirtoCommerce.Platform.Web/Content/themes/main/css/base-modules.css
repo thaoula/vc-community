@@ -2166,6 +2166,15 @@ ol
         word-spacing: 0;
     }
 
+    .__actions .list-item,
+    .__actions .menu-item
+    {
+        display: inline-block;
+        padding: 0 2px;
+        vertical-align: top;
+        word-spacing: 0;
+    }
+
 .list.__notice
 {
     
@@ -2300,6 +2309,7 @@ ol
         font-family: 'Exo 2';
         font-size: 13px;
         padding: 5px 20px;
+        position: relative;
         text-align: left;
         text-shadow: none;
         white-space: nowrap;
@@ -2335,7 +2345,7 @@ ol
             left: 100%;
             padding: 10px 0;
             position: absolute;
-            top: 0;
+            top: -10px;
         }
 
         .menu.__context .menu-item:hover .menu.__sub
@@ -5355,8 +5365,10 @@ tags-input .tags .tag-item .remove-button
             .nav-bar .__selected .menu-link.__animated,
             .nav-bar .menu-link.__animated
             {
-                background-color: #43b0e6;
                 color: #fff;
+
+                -webkit-animation: notify ease 1 2s;
+                        animation: notify ease 1 2s;
             }
 
             .nav-bar .menu-link.__animated:hover
@@ -5662,6 +5674,7 @@ tags-input .tags .tag-item .remove-button
 {
     background: #fff;
     font-family: serif;
+    overflow: hidden;
     position: relative;
 
     -webkit-box-shadow: -5px 0 5px -6px rgba(0, 0, 0, .1);
@@ -5697,6 +5710,9 @@ tags-input .tags .tag-item .remove-button
 
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
+
+        -webkit-transition: height .3s ease;
+                transition: height .3s ease;
     }
 
     .blade.__active .blade-head
@@ -5704,15 +5720,19 @@ tags-input .tags .tag-item .remove-button
         background: #34454c;
     }
 
+    .blade .blade-head.__expanded
+    {
+        height: 180px;
+    }
+
         .blade-head .blade-status
         {
-            background: #232323;
             height: 25px;
             left: 0;
             position: absolute;
             right: 8px;
             top: 0;
-            z-index: 25;
+            z-index: 55;
         }
 
         .blade-head .blade-status.__error
@@ -5765,8 +5785,14 @@ tags-input .tags .tag-item .remove-button
             right: 8px;
             text-align: right;
             top: 0;
-            z-index: 50;
         }
+
+            .blade-nav .menu
+            {
+                background: #232323;
+                position: relative;
+                z-index: 100;
+            }
 
             .blade-nav .menu-item
             {
@@ -5912,12 +5938,19 @@ tags-input .tags .tag-item .remove-button
             bottom: 0;
             left: 0;
             height: 50px;
-            padding: 0 70px 0 0;
             position: absolute;
             right: 8px;
 
             -webkit-box-shadow: 0 1px 0 #2b2b2b inset;
                     box-shadow: 0 1px 0 #2b2b2b inset;
+
+            -webkit-transition: height .3s ease;
+                    transition: height .3s ease;
+        }
+
+        .blade-head.__expanded .blade-toolbar
+        {
+            height: 100px;
         }
 
         .blade-head .blade-switch
@@ -5945,9 +5978,35 @@ tags-input .tags .tag-item .remove-button
 
             .blade-toolbar .menu
             {
-                height: 100%;
+                height: 50px;
                 margin: 0 0 0 10px;
             }
+
+            .blade-toolbar .menu.__more
+            {
+                opacity: 0;
+                visibility: hidden;
+
+                -webkit-transition: all .3s ease;
+                        transition: all .3s ease;
+            }
+
+            .blade-head.__expanded .blade-toolbar .menu.__more
+            {
+                opacity: 1;
+                visibility: visible;
+            }
+
+                .menu.__more .menu-item
+                {
+                    margin: 5px 0;
+                }
+
+                .menu.__more .blade-switch
+                {
+                    padding: 0 10px;
+                    position: static;
+                }
 
                 .blade-toolbar .menu-item
                 {
@@ -6047,6 +6106,14 @@ tags-input .tags .tag-item .remove-button
         height: calc(100% - 130px);
         overflow: hidden;
         position: relative;
+
+        -webkit-transition: height .3s ease;
+                transition: height .3s ease;
+    }
+
+    .blade-head.__expanded + .blade-container
+    {
+        height: calc(100% - 180px);
     }
 
     .blade .blade-container.__loading
@@ -6662,7 +6729,7 @@ input.ui-grid-filter-input[type="text"]
     .gridster gridster-item,
     .gridster .list-item
     {
-        background: #fff;
+        background: #fbfdfe;
         cursor: move;
         padding: 2px;
         position: absolute;
