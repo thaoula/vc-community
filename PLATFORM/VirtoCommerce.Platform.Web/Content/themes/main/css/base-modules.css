@@ -5758,6 +5758,7 @@ tags-input .tags .tag-item .remove-button
 
             .blade-status .status-message
             {
+                background: #232323;
                 bottom: 0;
                 color: #fff;
                 font-size: 14px;
@@ -5767,7 +5768,7 @@ tags-input .tags .tag-item .remove-button
                 position: absolute;
                 right: 0;
                 top: 0;
-                z-index: 200;
+                z-index: 150;
 
                 filter: alpha(opacity=50);
             }
@@ -5791,7 +5792,7 @@ tags-input .tags .tag-item .remove-button
                 position: absolute;
                 right: 0;
                 top: 0;
-                z-index: 150;
+                z-index: 200;
             }
 
         .blade-head .blade-nav
@@ -5808,7 +5809,6 @@ tags-input .tags .tag-item .remove-button
             {
                 background: #232323;
                 position: relative;
-                z-index: 100;
             }
 
             .blade-nav .menu-item
@@ -5818,8 +5818,10 @@ tags-input .tags .tag-item .remove-button
                 cursor: pointer;
                 font-size: 0;
                 height: 25px;
+                line-height: 1.4;
                 position: relative;
                 width: 35px;
+                z-index: 250;
             }
 
             .blade-nav .menu-item.__disabled
@@ -6155,7 +6157,7 @@ tags-input .tags .tag-item .remove-button
 
             .blade-static.__collapsed .breadcrumbs
             {
-                padding: 10px 20px;
+                padding: 13px 20px;
             }
 
             .blade-static.__expanded .breadcrumbs
