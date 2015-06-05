@@ -3178,7 +3178,7 @@ fieldset + fieldset
 
     .form-control .form-label + .form-label
     {
-        margin: 0 0 0 10px;
+        margin-left: 10px;
     }
 
     label.form-control
@@ -3196,6 +3196,26 @@ fieldset + fieldset
         position: relative;
     }
 
+    .form-control.__checkbox,
+    .form-control.__radio
+    {
+        height: 13px;
+    }
+
+    .form-control.__checkbox + .form-control,
+    .form-control.__radio + .form-control
+    {
+        margin-top: 5px;
+    }
+
+        .form-control.__checkbox .form-label,
+        .form-control.__radio .form-label
+        {
+            line-height: 1.1;
+            margin-bottom: 0;
+            vertical-align: top;
+        }
+
         .form-control input
         {
             position: absolute;
@@ -3209,7 +3229,7 @@ fieldset + fieldset
             height: 13px;
             left: 0;
             position: absolute;
-            top: 2px;
+            top: 0;
             width: 13px;
 
             -webkit-box-sizing: border-box;
@@ -3218,16 +3238,12 @@ fieldset + fieldset
 
         .form-control.__radio .check
         {
-            top: 3px;
-        }
-
-        .form-control.__radio .check
-        {
             -webkit-border-radius: 50%;
                     border-radius: 50%;
         }
 
-        .form-control .check:hover
+        .form-control .form-label:hover .check,
+        .form-control :checked ~ .check
         {
             border-color: #80a0b5;
         }
@@ -3266,6 +3282,7 @@ fieldset + fieldset
 
         .form-control .name
         {
+            color: #4c4c4c;
             display: inline-block;
             margin: 0 0 0 18px;
             vertical-align: 2px;
@@ -4212,18 +4229,18 @@ button.btn
             color: #a6a6a6;
         }
 
-.list.__chosen
+.list.__choosen
 {
     margin: 10px 0;
 }
 
-    .__chosen .list-item
+    .__choosen .list-item
     {
         margin: 0 10px 10px 0;
         position: relative;
     }
 
-        .__chosen .list-name
+        .__choosen .list-name
         {
             background: #43b0e6;
             color: #fff;
@@ -4239,7 +4256,7 @@ button.btn
             white-space: nowrap;
         }
 
-        .__chosen .list-remove
+        .__choosen .list-remove
         {
             color: #a1c0d4;
             cursor: pointer;
@@ -4251,7 +4268,7 @@ button.btn
             margin: 3px 4px 0 0;
         }
 
-        .__chosen .list-remove:hover
+        .__choosen .list-remove:hover
         {
             color: #43b0e6;
         }
@@ -5732,7 +5749,6 @@ tags-input .tags .tag-item .remove-button
             position: absolute;
             right: 8px;
             top: 0;
-            z-index: 55;
         }
 
         .blade-head .blade-status.__error
@@ -5751,6 +5767,7 @@ tags-input .tags .tag-item .remove-button
                 position: absolute;
                 right: 0;
                 top: 0;
+                z-index: 200;
 
                 filter: alpha(opacity=50);
             }
@@ -5774,7 +5791,7 @@ tags-input .tags .tag-item .remove-button
                 position: absolute;
                 right: 0;
                 top: 0;
-                z-index: 100;
+                z-index: 150;
             }
 
         .blade-head .blade-nav
