@@ -2821,14 +2821,14 @@ fieldset + fieldset
     display: inline-block;
 }
 
-.form-group + .form-group
+.form-group
 {
     margin: 15px 0 0;
 }
 
 .__inline .form-group + .form-group
 {
-    margin: 0 0 0 15px;
+    margin-left: 15px;
 }
 
     .form-group .form-hint
