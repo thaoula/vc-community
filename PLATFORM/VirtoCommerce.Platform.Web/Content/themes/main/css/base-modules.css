@@ -5751,14 +5751,9 @@ tags-input .tags .tag-item .remove-button
             top: 0;
         }
 
-        .blade-head .blade-status.__error
-        {
-            background: rgba(229,20,0,.45);
-        }
-
             .blade-status .status-message
             {
-                background: #232323;
+                background: #7a1c13;
                 bottom: 0;
                 color: #fff;
                 font-size: 14px;
@@ -5768,7 +5763,7 @@ tags-input .tags .tag-item .remove-button
                 position: absolute;
                 right: 0;
                 top: 0;
-                z-index: 150;
+                z-index: 300;
 
                 filter: alpha(opacity=50);
             }
@@ -5822,6 +5817,11 @@ tags-input .tags .tag-item .remove-button
                 position: relative;
                 width: 35px;
                 z-index: 250;
+            }
+
+            .blade-nav .menu-item.__close
+            {
+                z-index: 350;
             }
 
             .blade-nav .menu-item.__disabled
