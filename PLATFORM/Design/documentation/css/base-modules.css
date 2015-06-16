@@ -3584,7 +3584,7 @@ button.btn
 
 .tile
 {
-    background: #fff;
+    background: #fbfdfe;
     color: #4c4c4c;
     cursor: pointer;
     float: left;
@@ -3600,8 +3600,8 @@ button.btn
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
 
-    -webkit-box-shadow: 0 0 0 2px rgba(0,0,0,0) inset;
-            box-shadow: 0 0 0 2px rgba(0,0,0,0) inset;
+    -webkit-box-shadow: 0 0 0 2px #dee9f0 inset;
+            box-shadow: 0 0 0 2px #dee9f0 inset;
 }
 
 .tile.__price
