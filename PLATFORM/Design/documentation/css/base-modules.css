@@ -6649,19 +6649,21 @@ input.ui-grid-filter-input[type="text"]
 /* Image preview */
 .image-preview
 {
-    height: 450px;
-    left: 55px;
+    background: #fff;
+    border: 2px solid #a1c0d4;
+    height: 300px;
+    line-height: 298px;
     overflow: hidden;
-    position: absolute;
-    top: 10px;
-    width: 450px;
+    position: fixed;
+    width: 300px;
     z-index: 50;
 }
 
     .image-preview *
     {
-        display: block;
+        display: inline-block;
         max-width: 100%;
+        vertical-align: middle;
     }
 
 /* Popup */
