@@ -39,27 +39,34 @@ namespace VirtoCommerce.Platform.Tests
 			repository = _fixture.Db;
 			var manager = new NotificationManager(new LiquidNotificationTemplateResolver(), repository, service);
 
-			var notification = new RegistrationNotification
+			Func<RegistrationNotification> registrationNotification = () =>
 			{
-				AttemptCount = 0,
-				Body = template.Body,
-				Channel = "Email",
-				Email = "eo@virtoway.com",
-				FirstName = "Evgeny",
-				IsActive = true,
-				LastName = "Okhrimenko",
-				MaxAttemptCount = 10,
-				Recipient = "eo@virtoway.com",
-				Sender = "someemail@virtocommerce.com",
-				Subject = template.Subject,
-				ObjectId = template.ObjectId
+				return new RegistrationNotification(new DefaultEmailNotificationSendingGateway())
+				{
+					AttemptCount = 0,
+					IsActive = true,
+					MaxAttemptCount = 10,
+					ObjectId = "Platform",
+					Type = typeof(RegistrationNotification).FullName
+				};
 			};
 
-			manager.SendNotification(notification);
+			manager.RegisterNotification(registrationNotification);
+
+			var notification = manager.GetNewNotification<RegistrationNotification>();
+
+			notification.Email = notification.Recipient = "eo@virtoway.com";
+			notification.Sender = "evg@foo.boo";
+			notification.FirstName = "Evgeny";
+			notification.LastName = "Okhrimenko";
+
+			manager.SheduleSendNotification(notification);
 
 			var templatesC = repository.NotificationTemplates.Count();
 			var notificationC = repository.Notifications.Count();
 
+			Assert.Equal(1, templatesC);
+			Assert.Equal(1, notificationC);
 			Assert.Equal("Registration template #1", template.DisplayName);
 			Assert.True(notification.Subject.Contains("Evgeny Okhrimenko"));
 		}
