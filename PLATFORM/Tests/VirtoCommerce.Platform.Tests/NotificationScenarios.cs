@@ -24,12 +24,11 @@ namespace VirtoCommerce.Platform.Tests
 		public void CreateNotitfication()
 		{
 			var repository = _fixture.Db;
-			Func<IPlatformRepository> func = () => repository;
-			var service = new NotificationTemplateServiceImpl(func);
+			var service = new NotificationTemplateServiceImpl(repository);
 			var template = service.Create(new Core.Notification.NotificationTemplate
 				{
-					Body = @"&lt;p&gt; Dear {{ context.firstname }} {{ context.lastname }}, you has registered on our site&lt;/p&gt; &lt;p&gt; Your e-mail  - {{ context.email }} &lt;/p&gt;",
-					Subject = @"&lt;p&gt; Thanks for registration {{ context.firstname }} {{ context.lastname }}!!! &lt;/p&gt;",
+					Body = @"&lt;p&gt; Dear {{ context.first_name }} {{ context.last_name }}, you has registered on our site&lt;/p&gt; &lt;p&gt; Your e-mail  - {{ context.email }} &lt;/p&gt;",
+					Subject = @"&lt;p&gt; Thanks for registration {{ context.first_name }} {{ context.last_name }}!!! &lt;/p&gt;",
 					NotificationTypeId = "RegistrationNotification",
 					ObjectId = "Platform",
 					TemplateEngine = "Liquid",
@@ -37,9 +36,10 @@ namespace VirtoCommerce.Platform.Tests
 				});
 
 
-
+			repository = _fixture.Db;
 			var manager = new NotificationManager(new LiquidNotificationTemplateResolver(), repository);
-			manager.SendNotification(new RegistrationNotification
+
+			var notification = new RegistrationNotification
 			{
 				AttemptCount = 0,
 				Body = template.Body,
@@ -53,12 +53,14 @@ namespace VirtoCommerce.Platform.Tests
 				Sender = "someemail@virtocommerce.com",
 				Subject = template.Subject,
 				ObjectId = template.ObjectId
-			});
+			};
 
-			var template1 = repository.NotificationTemplates.First();
-			var notification = repository.Notifications.First();
+			manager.SendNotification(notification);
 
-			Assert.Equal("Registration template #1", template1.DisplayName);
+			var templatesC = repository.NotificationTemplates.Count();
+			var notificationC = repository.Notifications.Count();
+
+			Assert.Equal("Registration template #1", template.DisplayName);
 			Assert.True(notification.Subject.Contains("Evgeny Okhrimenko"));
 		}
 	}
