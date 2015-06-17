@@ -29,7 +29,7 @@ namespace VirtoCommerce.Platform.Tests
 				{
 					Body = @"&lt;p&gt; Dear {{ context.first_name }} {{ context.last_name }}, you has registered on our site&lt;/p&gt; &lt;p&gt; Your e-mail  - {{ context.email }} &lt;/p&gt;",
 					Subject = @"&lt;p&gt; Thanks for registration {{ context.first_name }} {{ context.last_name }}!!! &lt;/p&gt;",
-					NotificationTypeId = "RegistrationNotification",
+					NotificationTypeId = "VirtoCommerce.Platform.Data.Notification.RegistrationNotification",
 					ObjectId = "Platform",
 					TemplateEngine = "Liquid",
 					DisplayName = "Registration template #1"
@@ -37,7 +37,7 @@ namespace VirtoCommerce.Platform.Tests
 
 
 			repository = _fixture.Db;
-			var manager = new NotificationManager(new LiquidNotificationTemplateResolver(), repository);
+			var manager = new NotificationManager(new LiquidNotificationTemplateResolver(), repository, service);
 
 			var notification = new RegistrationNotification
 			{
