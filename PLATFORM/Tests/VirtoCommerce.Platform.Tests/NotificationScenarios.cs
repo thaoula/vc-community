@@ -13,8 +13,7 @@ namespace VirtoCommerce.Platform.Tests
 	public class NotificationScenarios : IClassFixture<RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer>>
     {
         private readonly RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer> _fixture;
-		public NotificationScenarios(
-            RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer> fixture)
+		public NotificationScenarios(RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer> fixture)
         {
             _fixture = fixture;
         }
@@ -23,37 +22,35 @@ namespace VirtoCommerce.Platform.Tests
 		[Trait("Category", "Notifications")]
 		public void CreateNotitfication()
 		{
-			var repository = _fixture.Db;
-			var service = new NotificationTemplateServiceImpl(repository);
+			var service = new NotificationTemplateServiceImpl(() => new RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer>().Db);
 			var template = service.Create(new Core.Notification.NotificationTemplate
 				{
 					Body = @"&lt;p&gt; Dear {{ context.first_name }} {{ context.last_name }}, you has registered on our site&lt;/p&gt; &lt;p&gt; Your e-mail  - {{ context.email }} &lt;/p&gt;",
 					Subject = @"&lt;p&gt; Thanks for registration {{ context.first_name }} {{ context.last_name }}!!! &lt;/p&gt;",
-					NotificationTypeId = "VirtoCommerce.Platform.Data.Notification.RegistrationNotification",
+					NotificationTypeId = "RegistrationEmailNotification",
 					ObjectId = "Platform",
 					TemplateEngine = "Liquid",
 					DisplayName = "Registration template #1"
 				});
 
 
-			repository = _fixture.Db;
-			var manager = new NotificationManager(new LiquidNotificationTemplateResolver(), repository, service);
+			var manager = new NotificationManager(new LiquidNotificationTemplateResolver(), () => new RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer>().Db, service);
 
-			Func<RegistrationNotification> registrationNotification = () =>
+			Func<RegistrationEmailNotification> registrationNotification = () =>
 			{
-				return new RegistrationNotification(new DefaultEmailNotificationSendingGateway())
+				return new RegistrationEmailNotification(new DefaultEmailNotificationSendingGateway())
 				{
 					AttemptCount = 0,
 					IsActive = true,
 					MaxAttemptCount = 10,
 					ObjectId = "Platform",
-					Type = typeof(RegistrationNotification).FullName
+					Type = typeof(RegistrationEmailNotification).Name
 				};
 			};
 
-			manager.RegisterNotification(registrationNotification);
+			manager.RegisterNotificationType(registrationNotification);
 
-			var notification = manager.GetNewNotification<RegistrationNotification>();
+			var notification = manager.GetNewNotification<RegistrationEmailNotification>();
 
 			notification.Email = notification.Recipient = "eo@virtoway.com";
 			notification.Sender = "evg@foo.boo";
@@ -62,8 +59,8 @@ namespace VirtoCommerce.Platform.Tests
 
 			manager.SheduleSendNotification(notification);
 
-			var templatesC = repository.NotificationTemplates.Count();
-			var notificationC = repository.Notifications.Count();
+			var templatesC = new RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer>().Db.NotificationTemplates.Count();
+			var notificationC = new RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer>().Db.Notifications.Count();
 
 			Assert.Equal(1, templatesC);
 			Assert.Equal(1, notificationC);
