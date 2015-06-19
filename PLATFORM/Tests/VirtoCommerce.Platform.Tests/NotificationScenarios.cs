@@ -25,8 +25,8 @@ namespace VirtoCommerce.Platform.Tests
 			var service = new NotificationTemplateServiceImpl(() => new RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer>().Db);
 			var template = service.Create(new Core.Notification.NotificationTemplate
 				{
-					Body = @"&lt;p&gt; Dear {{ context.first_name }} {{ context.last_name }}, you has registered on our site&lt;/p&gt; &lt;p&gt; Your e-mail  - {{ context.email }} &lt;/p&gt;",
-					Subject = @"&lt;p&gt; Thanks for registration {{ context.first_name }} {{ context.last_name }}!!! &lt;/p&gt;",
+					Body = @"<p> Dear {{ context.first_name }} {{ context.last_name }}, you has registered on our site</p> <p> Your e-mail  - {{ context.email }} </p>",
+					Subject = @"<p> Thanks for registration {{ context.first_name }} {{ context.last_name }}!!! </p>",
 					NotificationTypeId = "RegistrationEmailNotification",
 					ObjectId = "Platform",
 					TemplateEngine = "Liquid",
