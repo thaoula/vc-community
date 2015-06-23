@@ -6466,6 +6466,11 @@ tags-input .tags .tag-item .remove-button
                     animation: loading 2s infinite ease-in-out;
         }
 
+    .blade .example-mail
+    {
+        padding: 20px 0;
+    }
+
 
 /* UI Grid */
 .ui-grid,
