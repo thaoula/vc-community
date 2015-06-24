@@ -3803,7 +3803,7 @@ button.btn
 
 .__images-list .tile.double
 {
-    line-height: 230px;
+    line-height: 225px;
 }
 
 .tile.double .tile-ico
@@ -6409,6 +6409,7 @@ tags-input .tags .tag-item .remove-button
 
         .blade-inner .inner-block
         {
+            margin: 0 0 20px;
             width: 380px;
         }
 
