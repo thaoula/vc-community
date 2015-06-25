@@ -52,7 +52,7 @@ namespace VirtoCommerce.Platform.Tests
 
 			var notification = manager.GetNewNotification<RegistrationEmailNotification>();
 
-			notification.Email = notification.Recipient = "eo@virtoway.com";
+			notification.Login = notification.Recipient = "eo@virtoway.com";
 			notification.Sender = "evg@foo.boo";
 			notification.FirstName = "Evgeny";
 			notification.LastName = "Okhrimenko";
