@@ -5187,9 +5187,9 @@ button.btn
     top: 5px;
 }
 
-.select2-search-choice-close:after
+.select2-search-choice-close::after
 {
-    color: #43b0e6;
+    color: #a1c0d4;
     content: '×';
     font-family: caption;
     font-size: 16px;
@@ -5197,6 +5197,11 @@ button.btn
     line-height: 1;
     text-shadow: none;
     top: 0;
+}
+
+.select2-search-choice-close:hover::after
+{
+    color: #43b0e6;
 }
 
 
