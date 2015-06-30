@@ -4340,6 +4340,9 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="blade-t">
+                            
+                        </div>
                         <div class="blade-toolbar">
                             <ul class="menu __inline">
                                 <li class="menu-item">
@@ -4381,22 +4384,34 @@
                             </ul>
                             <ul class="menu __inline __more">
                                 <li class="menu-item">
-                                    <div class="blade-switch">
-                                        <div class="switch-t">Primary</div>
-                                        <label class="form-label __switch">
-                                            <input type="checkbox">
-                                            <span class="switch"></span>
-                                        </label>
-                                    </div>
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-plus"></i>
+                                        Add
+                                    </a>
                                 </li>
                                 <li class="menu-item">
-                                    <div class="blade-switch">
-                                        <div class="switch-t">Approved</div>
-                                        <label class="form-label __switch">
-                                            <input type="checkbox" checked>
-                                            <span class="switch"></span>
-                                        </label>
-                                    </div>
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-edit"></i>
+                                        Manage
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-download"></i>
+                                        Import
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-upload"></i>
+                                        Export
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-btn">
+                                        <i class="menu-ico fa fa-trash-o"></i>
+                                        Delete
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -4461,6 +4476,56 @@
                         </div>
                     </div>
                 </div>
+                <div class="blade">
+                    <header class="blade-head">
+                        <div class="blade-status"></div>
+                        <div class="blade-nav">
+                            <ul class="menu __inline">
+                                <li class="menu-item __minimize">
+                                    Minimize
+                                </li>
+                                <li class="menu-item __maximize">
+                                    Maximize
+                                </li>
+                                <li class="menu-item __close">
+                                    Close
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="blade-toolbar">
+
+                        </div>
+                    </header>
+                    <div class="blade-container">
+                        <div class="blade-static __collapsed">
+                            <div class="breadcrumbs">
+                                <a class="back">
+                                    <i class="back-ico fa fa-arrow-left"></i>
+                                </a>
+                                <ul class="menu __inline">
+                                    <li class="menu-item">
+                                        <a class="menu-link" href="#">Catalogs</a>
+                                    </li>
+                                    <li class="menu-item __divider"></li>
+                                    <li class="menu-item">
+                                        <a class="menu-link" href="#">Samsung</a>
+                                    </li>
+                                    <li class="menu-item __divider"></li>
+                                    <li class="menu-item">
+                                        <a class="menu-link" href="#">Computers &amp; Tablets</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blade-content __medium-wide">
+                            <div class="blade-inner">
+                                <div class="inner-block">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </article>
     </div>
@@ -4496,7 +4561,20 @@
             });
 
             $('.menu-item.__more').on('click', function () {
-                $(this).parents('.blade-head').toggleClass('__expanded');
+                var attr  = $(this).parents('.blade-toolbar').attr('style'),
+                    count = $(this).parents('.blade-toolbar').find('.menu.__more').length;
+
+                if(count) {
+                    if (typeof attr !== typeof undefined && attr !== false) {
+                        $(this).parents('.blade-head').removeClass('__expanded');
+                        $(this).parents('.blade-toolbar').css({height: '50px'});
+                        $(this).parents('.blade-toolbar').removeAttr('style');
+                    }
+                    else {
+                        $(this).parents('.blade-head').addClass('__expanded');
+                        $(this).parents('.blade-toolbar').css({height: 50 + (count * 50) + 'px'});
+                    }
+                }
             });
 
             $('body').delegate('.blade-nav .menu-item.__close', 'click', function () {
