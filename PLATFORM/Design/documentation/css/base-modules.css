@@ -6006,6 +6006,7 @@ tags-input .tags .tag-item .remove-button
             position: absolute;
             right: 28px;
             text-align: center;
+            z-index: 100;
         }
 
             .blade-switch .switch-t
