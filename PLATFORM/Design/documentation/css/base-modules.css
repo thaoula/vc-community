@@ -4515,7 +4515,7 @@ button.btn
     .breadcrumbs .back
     {
         background: #fff;
-        border-color: #a1c0d4;
+        border: 1px solid #a1c0d4;
         color: #a1c0d4;
         display: inline-block;
         vertical-align: middle;
