@@ -2997,10 +2997,10 @@ fieldset + fieldset
 
         .form-input input[type=file]
         {
-            height: 1px;
-            opacity: 0;
+            height: 0;
             position: absolute;
-            width: 1px;
+            visibility: hidden;
+            width: 0;
             z-index: 0;
 
             filter: alpha(opacity=0);
@@ -3200,6 +3200,12 @@ fieldset + fieldset
     .form-control.__radio
     {
         height: 13px;
+    }
+
+    .blade-static .form-control.__checkbox,
+    .blade-static .form-control.__radio
+    {
+        margin: 0 0 10px;
     }
 
     .form-control.__checkbox + .form-control,
