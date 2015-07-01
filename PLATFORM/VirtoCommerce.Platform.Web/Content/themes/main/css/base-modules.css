@@ -3202,6 +3202,12 @@ fieldset + fieldset
         height: 13px;
     }
 
+    .blade-static .form-control.__checkbox,
+    .blade-static .form-control.__radio
+    {
+        margin: 0 0 10px;
+    }
+
     .form-control.__checkbox + .form-control,
     .form-control.__radio + .form-control
     {
