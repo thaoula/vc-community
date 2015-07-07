@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VirtoCommerce.Platform.Core.DynamicProperties;
 using VirtoCommerce.Platform.Data.DynamicProperties;
@@ -25,57 +24,69 @@ namespace VirtoCommerce.Platform.Tests
         }
 
         [TestMethod]
-        public void SaveLoadTypeProperties()
+        public void SaveLoadPropertiesAndValues()
         {
+            var service = GetDynamicPropertyService();
+
+            // Delete existing properties
+            var existingTypeProperties = service.GetProperties("TestObjectType");
+            var propertyIds = existingTypeProperties.Select(p => p.Id).ToArray();
+            service.DeleteProperties(propertyIds);
+
+            // Create properties
             var typeProperties = new[]
             {
                 new DynamicProperty
                 {
                     ObjectType = "TestObjectType",
-                    Name = "LocalizedProperty",
+                    Name = "SingleValueProperty",
                     ValueType = DynamicPropertyValueType.ShortText,
-                    IsLocaleDependent = true,
                     LocalizedNames = new[]
                     {
                         new DynamicPropertyName
                         {
-                            Locale = "en-US", Name = "Localized Property"
+                            Locale = "en-US", Name = "Single Value Property"
                         },
                         new DynamicPropertyName
                         {
-                            Locale = "ru-RU", Name = "Локализованное свойство"
+                            Locale = "ru-RU", Name = "Свойство с одним значением"
                         },
                     },
                 },
                 new DynamicProperty
                 {
                     ObjectType = "TestObjectType",
-                    Name = "GenericProperty",
+                    Name = "ArrayProperty",
                     ValueType = DynamicPropertyValueType.ShortText,
                     IsArray = true,
                 },
             };
 
-            var service = GetDynamicPropertyService();
-            service.SaveTypeProperties(typeProperties);
+            service.SaveProperties(typeProperties);
 
-            var typeProperties1 = service.GetTypeProperties("TestObjectType");
-        }
+            existingTypeProperties = service.GetProperties("TestObjectType");
+            var singleValueProperty = existingTypeProperties.First(p => p.Name == "SingleValueProperty");
+            var arrayProperty = existingTypeProperties.First(p => p.Name == "ArrayProperty");
 
-        [TestMethod]
-        public void SaveLoadObjectProperties()
-        {
+            // Rename property
+            var renamedProperties = new[] { existingTypeProperties[0] };
+            var originalName = renamedProperties[0].Name;
+            renamedProperties[0].Name = "NewName";
+            service.SaveProperties(renamedProperties);
+
+            // Return original name
+            renamedProperties[0].Name = originalName;
+            service.SaveProperties(renamedProperties);
+
             var objectProperties = new[]
             {
                 new DynamicProperty
                 {
-                    Name = "LocalizedProperty",
+                    Id = singleValueProperty.Id,
                     ObjectType = "TestObjectType",
                     ObjectId = "111",
                     ValueType = DynamicPropertyValueType.ShortText,
-                    Value = "Blue",
-                    IsLocaleDependent = true,
-                    LocalizedValues = new []
+                    Values = new[]
                     {
                         new DynamicPropertyValue
                         {
@@ -91,13 +102,11 @@ namespace VirtoCommerce.Platform.Tests
                 },
                 new DynamicProperty
                 {
-                    Name = "LocalizedProperty",
+                    Id = singleValueProperty.Id,
                     ObjectType = "TestObjectType",
                     ObjectId = "222",
                     ValueType = DynamicPropertyValueType.ShortText,
-                    Value = "Green",
-                    IsLocaleDependent = true,
-                    LocalizedValues = new []
+                    Values = new[]
                     {
                         new DynamicPropertyValue
                         {
@@ -113,20 +122,35 @@ namespace VirtoCommerce.Platform.Tests
                 },
                 new DynamicProperty
                 {
-                    Name = "GenericProperty",
+                    Id = arrayProperty.Id,
                     ObjectType = "TestObjectType",
                     ObjectId = "222",
                     ValueType = DynamicPropertyValueType.ShortText,
                     IsArray = true,
-                    ArrayValues = new []
+                    Values = new[]
                     {
-                        "qwerty",
-                        "asdfgh",
-                    }
+                        new DynamicPropertyValue
+                        {
+                            Locale = "en-US",
+                            ArrayValues = new[]
+                            {
+                                "qwerty",
+                                "asdfgh",
+                            }
+                        },
+                        new DynamicPropertyValue
+                        {
+                            Locale = "ru-RU",
+                            ArrayValues = new[]
+                            {
+                                "йцукен",
+                                "фывапр",
+                            }
+                        },
+                    },
                 },
             };
 
-            var service = GetDynamicPropertyService();
             service.SaveObjectProperties(objectProperties);
 
             var objectProperties1 = service.GetObjectProperties("TestObjectType", "111");
