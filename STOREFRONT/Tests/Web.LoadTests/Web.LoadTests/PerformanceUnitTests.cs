@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VirtoCommerce.ApiClient;
 using VirtoCommerce.ApiClient.Extensions;
-using VirtoCommerce.Tests.LoadTests;
 
 namespace Web.LoadTests
 {
