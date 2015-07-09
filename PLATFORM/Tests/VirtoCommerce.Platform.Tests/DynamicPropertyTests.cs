@@ -218,10 +218,10 @@ namespace VirtoCommerce.Platform.Tests
                 },
             };
 
-            service.SaveObjectProperties(objectProperties);
+            service.SaveObjectValues(objectProperties);
 
-            var objectProperties1 = service.GetObjectProperties("TestObjectType", "111");
-            var objectProperties2 = service.GetObjectProperties("TestObjectType", "222");
+            var objectProperties1 = service.GetObjectValues("TestObjectType", "111");
+            var objectProperties2 = service.GetObjectValues("TestObjectType", "222");
         }
 
         private IDynamicPropertyService GetDynamicPropertyService()
