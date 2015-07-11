@@ -10,7 +10,7 @@ namespace VirtoCommerce.Platform.Tests
 {
     public class WithDynamicProperties : IHasDynamicProperties
     {
-        public ICollection<DynamicProperty> DynamicProperties { get; set; }
+        public ICollection<DynamicPropertyObjectValue> DynamicPropertyValues { get; set; }
     }
 
     [TestClass]
@@ -33,7 +33,7 @@ namespace VirtoCommerce.Platform.Tests
             var propertyIds = existingTypeProperties.Select(p => p.Id).ToArray();
             service.DeleteProperties(propertyIds);
 
-            // Create properties
+            // Test properties
             var typeProperties = new[]
             {
                 new DynamicProperty
@@ -53,39 +53,7 @@ namespace VirtoCommerce.Platform.Tests
                         },
                     },
                     IsDictionary = true,
-                    DictionaryItems = new[]
-                    {
-                        new DynamicPropertyDictionaryItem
-                        {
-                            Name = "Red",
-                            DictionaryValues = new[]
-                            {
-                                new DynamicPropertyDictionaryValue
-                                {
-                                    Locale = "en-US", Value = "Red"
-                                },
-                                new DynamicPropertyDictionaryValue
-                                {
-                                    Locale = "ru-RU", Value = "Красный"
-                                },
-                            },
-                        },
-                        new DynamicPropertyDictionaryItem
-                        {
-                            Name = "Blue",
-                            DictionaryValues = new[]
-                            {
-                                new DynamicPropertyDictionaryValue
-                                {
-                                    Locale = "en-US", Value = "Blue"
-                                },
-                                new DynamicPropertyDictionaryValue
-                                {
-                                    Locale = "ru-RU", Value = "Синий"
-                                },
-                            },
-                        },
-                    },
+                    IsArray = true,
                 },
                 new DynamicProperty
                 {
@@ -110,18 +78,23 @@ namespace VirtoCommerce.Platform.Tests
                     Name = "Array",
                     ValueType = DynamicPropertyValueType.ShortText,
                     IsArray = true,
+                    DisplayNames = new[]
+                    {
+                        new DynamicPropertyName
+                        {
+                            Locale = "en-US", Name = "Array"
+                        },
+                        new DynamicPropertyName
+                        {
+                            Locale = "ru-RU", Name = "Массив"
+                        },
+                    },
                 },
             };
 
             service.SaveProperties(typeProperties);
 
             existingTypeProperties = service.GetProperties("TestObjectType");
-            var arrayProperty = existingTypeProperties.First(p => p.Name == "Array");
-            var singleValueProperty = existingTypeProperties.First(p => p.Name == "SingleValueProperty");
-
-            var colorProperty = existingTypeProperties.First(p => p.Name == "Color");
-            var redColor = colorProperty.DictionaryItems.First(i => i.Name == "Red");
-            var blueColor = colorProperty.DictionaryItems.First(i => i.Name == "Blue");
 
             // Rename property
             var renamedProperties = new[] { existingTypeProperties[0] };
@@ -133,88 +106,148 @@ namespace VirtoCommerce.Platform.Tests
             renamedProperties[0].Name = originalName;
             service.SaveProperties(renamedProperties);
 
+            var arrayProperty = existingTypeProperties.First(p => p.Name == "Array");
+            var singleValueProperty = existingTypeProperties.First(p => p.Name == "SingleValueProperty");
+            var colorProperty = existingTypeProperties.First(p => p.Name == "Color");
+
+            // Test dictionary items
+            var newItems = new[]
+            {
+                new DynamicPropertyDictionaryItem
+                {
+                    Name = "Red",
+                    DictionaryValues = new[]
+                    {
+                        new DynamicPropertyDictionaryValue
+                        {
+                            Locale = "en-US", Value = "Red"
+                        },
+                        new DynamicPropertyDictionaryValue
+                        {
+                            Locale = "ru-RU", Value = "Красный"
+                        },
+                    },
+                },
+                new DynamicPropertyDictionaryItem
+                {
+                    Name = "Green",
+                    DictionaryValues = new[]
+                    {
+                        new DynamicPropertyDictionaryValue
+                        {
+                            Locale = "en-US", Value = "Green"
+                        },
+                        new DynamicPropertyDictionaryValue
+                        {
+                            Locale = "ru-RU", Value = "Зелёный"
+                        },
+                    },
+                },
+                new DynamicPropertyDictionaryItem
+                {
+                    Name = "Blue",
+                    DictionaryValues = new[]
+                    {
+                        new DynamicPropertyDictionaryValue
+                        {
+                            Locale = "en-US", Value = "Blue"
+                        },
+                        new DynamicPropertyDictionaryValue
+                        {
+                            Locale = "ru-RU", Value = "Синий"
+                        },
+                    },
+                },
+                new DynamicPropertyDictionaryItem
+                {
+                    Name = "Yellow",
+                    DictionaryValues = new[]
+                    {
+                        new DynamicPropertyDictionaryValue
+                        {
+                            Locale = "en-US", Value = "Yellow"
+                        },
+                        new DynamicPropertyDictionaryValue
+                        {
+                            Locale = "ru-RU", Value = "Жёлтый"
+                        },
+                    },
+                },
+            };
+
+            service.SaveDictionaryItems(colorProperty.Id, newItems);
+
+            var dictionaryItems = service.GetDictionaryItems(colorProperty.Id);
+
+            var redColor = dictionaryItems.First(i => i.Name == "Red");
+            var greenColor = dictionaryItems.First(i => i.Name == "Green");
+            var blueColor = dictionaryItems.First(i => i.Name == "Blue");
+            var yellowColor = dictionaryItems.First(i => i.Name == "Yellow");
+
+            yellowColor.Name = "Pink";
+            yellowColor.DictionaryValues[0].Value = "Pink";
+            service.SaveDictionaryItems(colorProperty.Id, dictionaryItems);
+
+            service.DeleteDictionaryItems(new[] { yellowColor.Id });
+
+            // Test object values
             var objectProperties = new[]
             {
-                new DynamicProperty
+                new DynamicPropertyObjectValue
                 {
-                    Id = colorProperty.Id,
+                    Property = new DynamicProperty { Id = colorProperty.Id },
                     ObjectId = "111",
-                    ObjectValues = new[] { new DynamicPropertyObjectValue { DictionaryItemId = redColor.Id } },
+                    Values = new[] { redColor.Id },
                 },
-                new DynamicProperty
+                new DynamicPropertyObjectValue
                 {
-                    Id = colorProperty.Id,
+                    Property = new DynamicProperty { Id = colorProperty.Id },
                     ObjectId = "222",
-                    ObjectValues = new[] { new DynamicPropertyObjectValue { DictionaryItemId = blueColor.Id } },
+                    Values = new[] { greenColor.Id, blueColor.Id },
                 },
-                new DynamicProperty
+
+                new DynamicPropertyObjectValue
                 {
-                    Id = singleValueProperty.Id,
-                    ObjectType = "TestObjectType",
+                    Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "111",
-                    ValueType = DynamicPropertyValueType.ShortText,
-                    ObjectValues = new[]
-                    {
-                        new DynamicPropertyObjectValue
-                        {
-                            Locale = "en-US",
-                            Value = "Black",
-                        },
-                        new DynamicPropertyObjectValue
-                        {
-                            Locale = "ru-RU",
-                            Value = "Чёрный",
-                        },
-                    },
+                    Locale = "en-US",
+                    Values = new[] { "Fork" },
                 },
-                new DynamicProperty
+                new DynamicPropertyObjectValue
                 {
-                    Id = singleValueProperty.Id,
-                    ObjectType = "TestObjectType",
-                    ObjectId = "222",
-                    ValueType = DynamicPropertyValueType.ShortText,
-                    ObjectValues = new[]
-                    {
-                        new DynamicPropertyObjectValue
-                        {
-                            Locale = "en-US",
-                            Value = "White",
-                        },
-                        new DynamicPropertyObjectValue
-                        {
-                            Locale = "ru-RU",
-                            Value = "Белый",
-                        },
-                    },
+                    Property = new DynamicProperty { Id = singleValueProperty.Id },
+                    ObjectId = "111",
+                    Locale = "ru-RU",
+                    Values = new[] { "Вилка" },
                 },
-                new DynamicProperty
+                new DynamicPropertyObjectValue
                 {
-                    Id = arrayProperty.Id,
-                    ObjectType = "TestObjectType",
+                    Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "222",
-                    ValueType = DynamicPropertyValueType.ShortText,
-                    IsArray = true,
-                    ObjectValues = new[]
-                    {
-                        new DynamicPropertyObjectValue
-                        {
-                            Locale = "en-US",
-                            ArrayValues = new[]
-                            {
-                                "qwerty",
-                                "asdfgh",
-                            }
-                        },
-                        new DynamicPropertyObjectValue
-                        {
-                            Locale = "ru-RU",
-                            ArrayValues = new[]
-                            {
-                                "йцукен",
-                                "фывапр",
-                            }
-                        },
-                    },
+                    Locale = "en-US",
+                    Values = new[] { "Spoon" },
+                },
+                new DynamicPropertyObjectValue
+                {
+                    Property = new DynamicProperty { Id = singleValueProperty.Id },
+                    ObjectId = "222",
+                    Locale = "ru-RU",
+                    Values = new[] { "Ложка" },
+                },
+
+                new DynamicPropertyObjectValue
+                {
+                    Property = new DynamicProperty { Id = arrayProperty.Id },
+                    ObjectId = "222",
+                    Locale = "en-US",
+                    Values = new[] { "flower", "tree" },
+                },
+                new DynamicPropertyObjectValue
+                {
+                    Property = new DynamicProperty { Id = arrayProperty.Id },
+                    ObjectId = "222",
+                    Locale = "ru-RU",
+                    Values = new[] { "цветок", "дерево" },
                 },
             };
 
