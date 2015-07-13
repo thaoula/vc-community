@@ -48,6 +48,7 @@ namespace VirtoCommerce.Platform.Tests
                     ValueType = DynamicPropertyValueType.ShortText,
                     IsDictionary = true,
                     IsArray = true,
+                    IsRequired = true,
                     IsMultilingual = true,
                     DisplayNames = new[]
                     {
