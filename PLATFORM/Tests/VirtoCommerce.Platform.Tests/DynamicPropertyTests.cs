@@ -8,9 +8,14 @@ using VirtoCommerce.Platform.Data.Repositories;
 
 namespace VirtoCommerce.Platform.Tests
 {
-    public class WithDynamicProperties : IHasDynamicProperties
+    public class Parent : IHasDynamicProperties
     {
+        public string Id { get; set; }
         public ICollection<DynamicPropertyObjectValue> DynamicPropertyValues { get; set; }
+    }
+
+    public class Child : Parent
+    {
     }
 
     [TestClass]
@@ -41,6 +46,9 @@ namespace VirtoCommerce.Platform.Tests
                     ObjectType = "TestObjectType",
                     Name = "Color",
                     ValueType = DynamicPropertyValueType.ShortText,
+                    IsDictionary = true,
+                    IsArray = true,
+                    IsMultilingual = true,
                     DisplayNames = new[]
                     {
                         new DynamicPropertyName
@@ -52,8 +60,6 @@ namespace VirtoCommerce.Platform.Tests
                             Locale = "ru-RU", Name = "Цвет"
                         },
                     },
-                    IsDictionary = true,
-                    IsArray = true,
                 },
                 new DynamicProperty
                 {
@@ -116,60 +122,60 @@ namespace VirtoCommerce.Platform.Tests
                 new DynamicPropertyDictionaryItem
                 {
                     Name = "Red",
-                    DictionaryValues = new[]
+                    DisplayNames = new[]
                     {
-                        new DynamicPropertyDictionaryValue
+                        new DynamicPropertyDictionaryItemName
                         {
-                            Locale = "en-US", Value = "Red"
+                            Locale = "en-US", Name = "Red"
                         },
-                        new DynamicPropertyDictionaryValue
+                        new DynamicPropertyDictionaryItemName
                         {
-                            Locale = "ru-RU", Value = "Красный"
+                            Locale = "ru-RU", Name = "Красный"
                         },
                     },
                 },
                 new DynamicPropertyDictionaryItem
                 {
                     Name = "Green",
-                    DictionaryValues = new[]
+                    DisplayNames = new[]
                     {
-                        new DynamicPropertyDictionaryValue
+                        new DynamicPropertyDictionaryItemName
                         {
-                            Locale = "en-US", Value = "Green"
+                            Locale = "en-US", Name = "Green"
                         },
-                        new DynamicPropertyDictionaryValue
+                        new DynamicPropertyDictionaryItemName
                         {
-                            Locale = "ru-RU", Value = "Зелёный"
+                            Locale = "ru-RU", Name = "Зелёный"
                         },
                     },
                 },
                 new DynamicPropertyDictionaryItem
                 {
                     Name = "Blue",
-                    DictionaryValues = new[]
+                    DisplayNames = new[]
                     {
-                        new DynamicPropertyDictionaryValue
+                        new DynamicPropertyDictionaryItemName
                         {
-                            Locale = "en-US", Value = "Blue"
+                            Locale = "en-US", Name = "Blue"
                         },
-                        new DynamicPropertyDictionaryValue
+                        new DynamicPropertyDictionaryItemName
                         {
-                            Locale = "ru-RU", Value = "Синий"
+                            Locale = "ru-RU", Name = "Синий"
                         },
                     },
                 },
                 new DynamicPropertyDictionaryItem
                 {
                     Name = "Yellow",
-                    DictionaryValues = new[]
+                    DisplayNames = new[]
                     {
-                        new DynamicPropertyDictionaryValue
+                        new DynamicPropertyDictionaryItemName
                         {
-                            Locale = "en-US", Value = "Yellow"
+                            Locale = "en-US", Name = "Yellow"
                         },
-                        new DynamicPropertyDictionaryValue
+                        new DynamicPropertyDictionaryItemName
                         {
-                            Locale = "ru-RU", Value = "Жёлтый"
+                            Locale = "ru-RU", Name = "Жёлтый"
                         },
                     },
                 },
@@ -185,7 +191,6 @@ namespace VirtoCommerce.Platform.Tests
             var yellowColor = dictionaryItems.First(i => i.Name == "Yellow");
 
             yellowColor.Name = "Pink";
-            yellowColor.DictionaryValues[0].Value = "Pink";
             service.SaveDictionaryItems(colorProperty.Id, dictionaryItems);
 
             service.DeleteDictionaryItems(new[] { yellowColor.Id });
