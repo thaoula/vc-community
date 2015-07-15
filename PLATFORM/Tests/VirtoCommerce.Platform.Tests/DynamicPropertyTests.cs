@@ -66,7 +66,7 @@ namespace VirtoCommerce.Platform.Tests
                 {
                     ObjectType = "TestObjectType",
                     Name = "SingleValueProperty",
-                    ValueType = DynamicPropertyValueType.ShortText,
+                    ValueType = DynamicPropertyValueType.Decimal,
                     DisplayNames = new[]
                     {
                         new DynamicPropertyName
@@ -203,13 +203,13 @@ namespace VirtoCommerce.Platform.Tests
                 {
                     Property = new DynamicProperty { Id = colorProperty.Id },
                     ObjectId = "111",
-                    Values = new[] { redColor.Id },
+                    Values = new object[] { redColor.Id },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = colorProperty.Id },
                     ObjectId = "222",
-                    Values = new[] { greenColor.Id, blueColor.Id },
+                    Values = new object[] { greenColor.Id, blueColor.Id },
                 },
 
                 new DynamicPropertyObjectValue
@@ -217,28 +217,28 @@ namespace VirtoCommerce.Platform.Tests
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "111",
                     Locale = "en-US",
-                    Values = new[] { "Fork" },
+                    Values = new object[] { 1.1 },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "111",
                     Locale = "ru-RU",
-                    Values = new[] { "Вилка" },
+                    Values = new object[] { 1.1 },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "222",
                     Locale = "en-US",
-                    Values = new[] { "Spoon" },
+                    Values = new object[] { 2.2 },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "222",
                     Locale = "ru-RU",
-                    Values = new[] { "Ложка" },
+                    Values = new object[] { 2.2 },
                 },
 
                 new DynamicPropertyObjectValue
@@ -246,14 +246,14 @@ namespace VirtoCommerce.Platform.Tests
                     Property = new DynamicProperty { Id = arrayProperty.Id },
                     ObjectId = "222",
                     Locale = "en-US",
-                    Values = new[] { "flower", "tree" },
+                    Values = new object[] { "flower", "tree" },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = arrayProperty.Id },
                     ObjectId = "222",
                     Locale = "ru-RU",
-                    Values = new[] { "цветок", "дерево" },
+                    Values = new object[] { "цветок", "дерево" },
                 },
             };
 
