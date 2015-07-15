@@ -226,14 +226,14 @@ namespace VirtoCommerce.Platform.Tests
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "111",
                     Locale = "ru-RU",
-                    Values = new object[] { 1.1 },
+                    Values = new object[] { 1.2 },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "222",
                     Locale = "en-US",
-                    Values = new object[] { 2.2 },
+                    Values = new object[] { 2.1 },
                 },
                 new DynamicPropertyObjectValue
                 {
