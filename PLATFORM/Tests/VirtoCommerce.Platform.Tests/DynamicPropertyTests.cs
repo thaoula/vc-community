@@ -25,7 +25,7 @@ namespace VirtoCommerce.Platform.Tests
         public void GetObjectTypes()
         {
             var service = GetDynamicPropertyService();
-            var typeNames = service.GetObjectTypes();
+            var typeNames = service.GetAvailableObjectTypeNames();
         }
 
         [TestMethod]
@@ -33,8 +33,10 @@ namespace VirtoCommerce.Platform.Tests
         {
             var service = GetDynamicPropertyService();
 
+            var objectType = service.GetObjectTypeName(typeof(Parent));
+
             // Delete existing properties
-            var existingTypeProperties = service.GetProperties("TestObjectType");
+            var existingTypeProperties = service.GetProperties(objectType);
             var propertyIds = existingTypeProperties.Select(p => p.Id).ToArray();
             service.DeleteProperties(propertyIds);
 
@@ -43,7 +45,7 @@ namespace VirtoCommerce.Platform.Tests
             {
                 new DynamicProperty
                 {
-                    ObjectType = "TestObjectType",
+                    ObjectType = objectType,
                     Name = "Color",
                     ValueType = DynamicPropertyValueType.ShortText,
                     IsDictionary = true,
@@ -64,9 +66,9 @@ namespace VirtoCommerce.Platform.Tests
                 },
                 new DynamicProperty
                 {
-                    ObjectType = "TestObjectType",
+                    ObjectType = objectType,
                     Name = "SingleValueProperty",
-                    ValueType = DynamicPropertyValueType.ShortText,
+                    ValueType = DynamicPropertyValueType.Decimal,
                     DisplayNames = new[]
                     {
                         new DynamicPropertyName
@@ -81,7 +83,7 @@ namespace VirtoCommerce.Platform.Tests
                 },
                 new DynamicProperty
                 {
-                    ObjectType = "TestObjectType",
+                    ObjectType = objectType,
                     Name = "Array",
                     ValueType = DynamicPropertyValueType.ShortText,
                     IsArray = true,
@@ -101,7 +103,7 @@ namespace VirtoCommerce.Platform.Tests
 
             service.SaveProperties(typeProperties);
 
-            existingTypeProperties = service.GetProperties("TestObjectType");
+            existingTypeProperties = service.GetProperties(objectType);
 
             // Rename property
             var renamedProperties = new[] { existingTypeProperties[0] };
@@ -203,13 +205,13 @@ namespace VirtoCommerce.Platform.Tests
                 {
                     Property = new DynamicProperty { Id = colorProperty.Id },
                     ObjectId = "111",
-                    Values = new[] { redColor.Id },
+                    Values = new object[] { redColor.Id },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = colorProperty.Id },
                     ObjectId = "222",
-                    Values = new[] { greenColor.Id, blueColor.Id },
+                    Values = new object[] { greenColor.Id, blueColor.Id },
                 },
 
                 new DynamicPropertyObjectValue
@@ -217,28 +219,28 @@ namespace VirtoCommerce.Platform.Tests
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "111",
                     Locale = "en-US",
-                    Values = new[] { "Fork" },
+                    Values = new object[] { 1.1 },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "111",
                     Locale = "ru-RU",
-                    Values = new[] { "Вилка" },
+                    Values = new object[] { 1.1 },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "222",
                     Locale = "en-US",
-                    Values = new[] { "Spoon" },
+                    Values = new object[] { 2.2 },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = singleValueProperty.Id },
                     ObjectId = "222",
                     Locale = "ru-RU",
-                    Values = new[] { "Ложка" },
+                    Values = new object[] { 2.2 },
                 },
 
                 new DynamicPropertyObjectValue
@@ -246,21 +248,26 @@ namespace VirtoCommerce.Platform.Tests
                     Property = new DynamicProperty { Id = arrayProperty.Id },
                     ObjectId = "222",
                     Locale = "en-US",
-                    Values = new[] { "flower", "tree" },
+                    Values = new object[] { "flower", "tree" },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = arrayProperty.Id },
                     ObjectId = "222",
                     Locale = "ru-RU",
-                    Values = new[] { "цветок", "дерево" },
+                    Values = new object[] { "цветок", "дерево" },
                 },
             };
 
             service.SaveObjectValues(objectProperties);
 
-            var objectProperties1 = service.GetObjectValues("TestObjectType", "111");
-            var objectProperties2 = service.GetObjectValues("TestObjectType", "222");
+            var objectProperties1 = service.GetObjectValues(objectType, "111");
+            var objectProperties2 = service.GetObjectValues(objectType, "222");
+
+            var obj = new Parent { Id = "222" };
+            service.LoadDynamicPropertyValues(obj);
+            var decimalValue = obj.GetDynamicPropertyValue(singleValueProperty.Name, 0m);
+            var dictionaryValue = obj.GetDynamicPropertyValue(colorProperty.Name, string.Empty);
         }
 
         private IDynamicPropertyService GetDynamicPropertyService()
