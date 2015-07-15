@@ -205,13 +205,13 @@ namespace VirtoCommerce.Platform.Tests
                 {
                     Property = new DynamicProperty { Id = colorProperty.Id },
                     ObjectId = "111",
-                    Values = new object[] { redColor.Id },
+                    Values = new object[] { new DynamicPropertyDictionaryItem { Id = redColor.Id } },
                 },
                 new DynamicPropertyObjectValue
                 {
                     Property = new DynamicProperty { Id = colorProperty.Id },
                     ObjectId = "222",
-                    Values = new object[] { greenColor.Id, blueColor.Id },
+                    Values = new object[] { new DynamicPropertyDictionaryItem { Id = greenColor.Id }, new DynamicPropertyDictionaryItem { Id = blueColor.Id } },
                 },
 
                 new DynamicPropertyObjectValue
