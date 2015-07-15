@@ -25,7 +25,7 @@ namespace VirtoCommerce.Platform.Tests
         public void GetObjectTypes()
         {
             var service = GetDynamicPropertyService();
-            var typeNames = service.GetObjectTypes();
+            var typeNames = service.GetAvailableObjectTypeNames();
         }
 
         [TestMethod]
@@ -33,8 +33,10 @@ namespace VirtoCommerce.Platform.Tests
         {
             var service = GetDynamicPropertyService();
 
+            var objectType = service.GetObjectTypeName(typeof(Parent));
+
             // Delete existing properties
-            var existingTypeProperties = service.GetProperties("TestObjectType");
+            var existingTypeProperties = service.GetProperties(objectType);
             var propertyIds = existingTypeProperties.Select(p => p.Id).ToArray();
             service.DeleteProperties(propertyIds);
 
@@ -43,7 +45,7 @@ namespace VirtoCommerce.Platform.Tests
             {
                 new DynamicProperty
                 {
-                    ObjectType = "TestObjectType",
+                    ObjectType = objectType,
                     Name = "Color",
                     ValueType = DynamicPropertyValueType.ShortText,
                     IsDictionary = true,
@@ -64,7 +66,7 @@ namespace VirtoCommerce.Platform.Tests
                 },
                 new DynamicProperty
                 {
-                    ObjectType = "TestObjectType",
+                    ObjectType = objectType,
                     Name = "SingleValueProperty",
                     ValueType = DynamicPropertyValueType.Decimal,
                     DisplayNames = new[]
@@ -81,7 +83,7 @@ namespace VirtoCommerce.Platform.Tests
                 },
                 new DynamicProperty
                 {
-                    ObjectType = "TestObjectType",
+                    ObjectType = objectType,
                     Name = "Array",
                     ValueType = DynamicPropertyValueType.ShortText,
                     IsArray = true,
@@ -101,7 +103,7 @@ namespace VirtoCommerce.Platform.Tests
 
             service.SaveProperties(typeProperties);
 
-            existingTypeProperties = service.GetProperties("TestObjectType");
+            existingTypeProperties = service.GetProperties(objectType);
 
             // Rename property
             var renamedProperties = new[] { existingTypeProperties[0] };
@@ -259,8 +261,13 @@ namespace VirtoCommerce.Platform.Tests
 
             service.SaveObjectValues(objectProperties);
 
-            var objectProperties1 = service.GetObjectValues("TestObjectType", "111");
-            var objectProperties2 = service.GetObjectValues("TestObjectType", "222");
+            var objectProperties1 = service.GetObjectValues(objectType, "111");
+            var objectProperties2 = service.GetObjectValues(objectType, "222");
+
+            var obj = new Parent { Id = "222" };
+            service.LoadDynamicPropertyValues(obj);
+            var decimalValue = obj.GetDynamicPropertyValue(singleValueProperty.Name, 0m);
+            var dictionaryValue = obj.GetDynamicPropertyValue(colorProperty.Name, string.Empty);
         }
 
         private IDynamicPropertyService GetDynamicPropertyService()
