@@ -11,7 +11,8 @@ namespace VirtoCommerce.Platform.Tests
     public class Parent : IHasDynamicProperties
     {
         public string Id { get; set; }
-        public ICollection<DynamicPropertyObjectValue> DynamicPropertyValues { get; set; }
+		public string ObjectType { get; set; }
+		public ICollection<DynamicObjectProperty> DynamicProperties { get; set; }
     }
 
     public class Child : Parent
@@ -199,70 +200,70 @@ namespace VirtoCommerce.Platform.Tests
             service.DeleteDictionaryItems(new[] { yellowColor.Id });
 
             // Test object values
-            var objectProperties = new[]
-            {
-                new DynamicPropertyObjectValue
-                {
-                    Property = new DynamicProperty { Id = colorProperty.Id },
-                    ObjectId = "111",
-                    Values = new object[] { new DynamicPropertyDictionaryItem { Id = redColor.Id } },
-                },
-                new DynamicPropertyObjectValue
-                {
-                    Property = new DynamicProperty { Id = colorProperty.Id },
-                    ObjectId = "222",
-                    Values = new object[] { new DynamicPropertyDictionaryItem { Id = greenColor.Id }, new DynamicPropertyDictionaryItem { Id = blueColor.Id } },
-                },
+			//var objectProperties = new[]
+			//{
+			//	new DynamicPropertyObjectValue
+			//	{
+			//		Property = new DynamicProperty { Id = colorProperty.Id },
+			//		ObjectId = "111",
+			//		Values = new object[] { new DynamicPropertyDictionaryItem { Id = redColor.Id } },
+			//	},
+			//	new DynamicPropertyObjectValue
+			//	{
+			//		Property = new DynamicProperty { Id = colorProperty.Id },
+			//		ObjectId = "222",
+			//		Values = new object[] { new DynamicPropertyDictionaryItem { Id = greenColor.Id }, new DynamicPropertyDictionaryItem { Id = blueColor.Id } },
+			//	},
 
-                new DynamicPropertyObjectValue
-                {
-                    Property = new DynamicProperty { Id = singleValueProperty.Id },
-                    ObjectId = "111",
-                    Locale = "en-US",
-                    Values = new object[] { 1.1 },
-                },
-                new DynamicPropertyObjectValue
-                {
-                    Property = new DynamicProperty { Id = singleValueProperty.Id },
-                    ObjectId = "111",
-                    Locale = "ru-RU",
-                    Values = new object[] { 1.2 },
-                },
-                new DynamicPropertyObjectValue
-                {
-                    Property = new DynamicProperty { Id = singleValueProperty.Id },
-                    ObjectId = "222",
-                    Locale = "en-US",
-                    Values = new object[] { 2.1 },
-                },
-                new DynamicPropertyObjectValue
-                {
-                    Property = new DynamicProperty { Id = singleValueProperty.Id },
-                    ObjectId = "222",
-                    Locale = "ru-RU",
-                    Values = new object[] { 2.2 },
-                },
+			//	new DynamicPropertyObjectValue
+			//	{
+			//		Property = new DynamicProperty { Id = singleValueProperty.Id },
+			//		ObjectId = "111",
+			//		Locale = "en-US",
+			//		Values = new object[] { 1.1 },
+			//	},
+			//	new DynamicPropertyObjectValue
+			//	{
+			//		Property = new DynamicProperty { Id = singleValueProperty.Id },
+			//		ObjectId = "111",
+			//		Locale = "ru-RU",
+			//		Values = new object[] { 1.2 },
+			//	},
+			//	new DynamicPropertyObjectValue
+			//	{
+			//		Property = new DynamicProperty { Id = singleValueProperty.Id },
+			//		ObjectId = "222",
+			//		Locale = "en-US",
+			//		Values = new object[] { 2.1 },
+			//	},
+			//	new DynamicPropertyObjectValue
+			//	{
+			//		Property = new DynamicProperty { Id = singleValueProperty.Id },
+			//		ObjectId = "222",
+			//		Locale = "ru-RU",
+			//		Values = new object[] { 2.2 },
+			//	},
 
-                new DynamicPropertyObjectValue
-                {
-                    Property = new DynamicProperty { Id = arrayProperty.Id },
-                    ObjectId = "222",
-                    Locale = "en-US",
-                    Values = new object[] { "flower", "tree" },
-                },
-                new DynamicPropertyObjectValue
-                {
-                    Property = new DynamicProperty { Id = arrayProperty.Id },
-                    ObjectId = "222",
-                    Locale = "ru-RU",
-                    Values = new object[] { "цветок", "дерево" },
-                },
-            };
+			//	new DynamicPropertyObjectValue
+			//	{
+			//		Property = new DynamicProperty { Id = arrayProperty.Id },
+			//		ObjectId = "222",
+			//		Locale = "en-US",
+			//		Values = new object[] { "flower", "tree" },
+			//	},
+			//	new DynamicPropertyObjectValue
+			//	{
+			//		Property = new DynamicProperty { Id = arrayProperty.Id },
+			//		ObjectId = "222",
+			//		Locale = "ru-RU",
+			//		Values = new object[] { "цветок", "дерево" },
+			//	},
+			//};
 
-            service.SaveObjectValues(objectProperties);
+			//service.SaveObjectValues(objectProperties);
 
-            var objectProperties1 = service.GetObjectValues(objectType, "111");
-            var objectProperties2 = service.GetObjectValues(objectType, "222");
+			//var objectProperties1 = service.GetObjectValues(objectType, "111");
+			//var objectProperties2 = service.GetObjectValues(objectType, "222");
 
             var obj = new Parent { Id = "222" };
             service.LoadDynamicPropertyValues(obj);
