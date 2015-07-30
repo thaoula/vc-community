@@ -57,7 +57,7 @@
 //			notification.FirstName = "Evgeny";
 //			notification.LastName = "Okhrimenko";
 
-//			manager.SheduleSendNotification(notification);
+//			manager.ScheduleSendNotification(notification);
 
 //			var templatesC = new RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer>().Db.NotificationTemplates.Count();
 //			var notificationC = new RepositoryDatabaseFixture<PlatformRepository, PlatformDatabaseInitializer>().Db.Notifications.Count();
