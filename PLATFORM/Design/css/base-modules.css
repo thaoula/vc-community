@@ -2746,6 +2746,12 @@ h3
         vertical-align: middle;
     }
 
+    .table .table-ico.sort
+    {
+        font-size: 16px;
+        margin: 5px 0 0 10px;
+    }
+
     .table-item.__error .table-ico
     {
         color: #e51400;
@@ -5581,7 +5587,7 @@ tags-input .tags .tag-item .remove-button
 
             .dropdown-content .list
             {
-                width: 320px;
+                width: 315px;
             }
 
                 .dropdown-content .list-item
