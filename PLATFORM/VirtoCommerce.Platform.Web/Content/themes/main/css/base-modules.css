@@ -5098,7 +5098,6 @@ button.btn
     border-color: #dee9f0;
     color: #4c4c4c;
     font-size: 14px;
-    height: 32px !important;
     line-height: 30px;
     padding: 0 10px;
 }
@@ -5190,13 +5189,6 @@ button.btn
 }
 
 /* Multi selects */
-.select2-container-multi .select2-choices .select2-search-field
-{
-    left: 10px;
-    position: absolute;
-    right: 0;
-}
-
 .form-input.__langs .select2-search-field
 {
     left: 36px;
@@ -5216,6 +5208,11 @@ button.btn
 
     -webkit-box-shadow: none;
             box-shadow: none;
+}
+
+.select2-container-multi .select2-choices .select2-search-field input
+{
+    padding: 7px 10px 7px 5px;
 }
 
 .select2-search-choice-close
