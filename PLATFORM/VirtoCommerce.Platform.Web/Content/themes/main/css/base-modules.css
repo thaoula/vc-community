@@ -5211,7 +5211,7 @@ button.btn
 {
     background: #fbfdfe;
     border: 1px solid #a1c0d4;
-    color: #fff;
+    font-size: 13px;
     line-height: 1;
     padding: 6px 30px 6px 5px;
     z-index: 50;
@@ -5254,6 +5254,12 @@ button.btn
 .select2-search-choice-close:hover::after
 {
     color: #43b0e6;
+}
+
+.select2-container-multi .select2-search-choice-close::after,
+.select2-container-multi .select2-search-choice-close:hover::after
+{
+    color: #a1c0d4;
 }
 
 
