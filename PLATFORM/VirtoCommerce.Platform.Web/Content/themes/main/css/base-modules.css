@@ -2815,6 +2815,12 @@ fieldset + fieldset
         width: 100%;
     }
 
+    .__gray fieldset legend,
+    .__gray .form-label
+    {
+        color: #4c4c4c;
+    }
+
 .form
 {
     padding: 15px 0;
