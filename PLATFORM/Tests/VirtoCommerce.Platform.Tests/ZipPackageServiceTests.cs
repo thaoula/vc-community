@@ -29,39 +29,36 @@ namespace VirtoCommerce.Platform.Tests
         [TestMethod]
         public void InstallUpdateUninstall()
         {
-            const string package1 = "TestModule1";
-            const string package2 = "TestModule2";
-
             var service = GetPackageService();
             var progress = new Progress<ProgressMessage>(WriteProgressMessage);
 
             ListModules(service);
 
-            service.Install(package2, "1.0.0", progress);
+            service.Install(@"source\TestModule2_v1.0.0.zip", progress);
             ListModules(service);
 
-            service.Install(package1, "1.0.0", progress);
+            service.Install(@"source\TestModule1_v1.0.0.zip", progress);
             ListModules(service);
 
-            service.Install(package2, "1.0.0", progress);
+            service.Install(@"source\TestModule2_v1.0.0.zip", progress);
             ListModules(service);
 
-            service.Update(package2, "1.1.0", progress);
+            service.Update("TestModule2", @"source\TestModule2_v1.1.0.zip", progress);
             ListModules(service);
 
-            service.Update(package1, "1.1.0", progress);
+            service.Update("TestModule1", @"source\TestModule1_v1.1.0.zip", progress);
             ListModules(service);
 
-            service.Update(package2, "1.1.0", progress);
+            service.Update("TestModule2", @"source\TestModule2_v1.1.0.zip", progress);
             ListModules(service);
 
-            service.Uninstall(package1, progress);
+            service.Uninstall("TestModule1", progress);
             ListModules(service);
 
-            service.Uninstall(package2, progress);
+            service.Uninstall("TestModule2", progress);
             ListModules(service);
 
-            service.Uninstall(package1, progress);
+            service.Uninstall("TestModule1", progress);
             ListModules(service);
         }
 
@@ -80,13 +77,12 @@ namespace VirtoCommerce.Platform.Tests
 
         private static IPackageService GetPackageService()
         {
-            var sourcePath = Path.GetFullPath("source");
             var modulesPath = Path.Combine(_tempDir, @"modules");
             var packagesPath = Path.Combine(_tempDir, @"packages");
 
             var manifestProvider = new ModuleManifestProvider(modulesPath);
 
-            var service = new ZipPackageService(null, manifestProvider, packagesPath, sourcePath);
+            var service = new ZipPackageService(null, manifestProvider, packagesPath);
             return service;
         }
 
